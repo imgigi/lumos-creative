@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMOS CREATIVE - 后台管理</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg:#111;--card:#1a1a1a;--card2:#222;--border:#333;--text:#e0e0e0;--dim:#888;--accent:#d4af37;--danger:#e74c3c;--success:#2ecc71;--info:#3498db}
+    body{font-family:'DM Sans','Noto Sans SC',sans-serif;background:var(--bg);color:var(--text)}
+    /* Header */
+    .admin-header{background:var(--card);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+    .admin-header h1{font-size:1.1rem;font-weight:400;color:var(--accent);letter-spacing:.2em}
+    .admin-header a{color:var(--dim);font-size:.85rem;text-decoration:none}
+    .admin-header a:hover{color:var(--accent)}
+    /* Layout */
+    .container{max-width:1100px;margin:0 auto;padding:2rem}
+    .tabs{display:flex;gap:0;margin-bottom:2rem;border-bottom:1px solid var(--border);overflow-x:auto}
+    .tab{padding:.8rem 1.5rem;cursor:pointer;font-size:.85rem;letter-spacing:.1em;color:var(--dim);border-bottom:2px solid transparent;transition:all .3s;white-space:nowrap}
+    .tab:hover{color:var(--text)}.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+    .tab-content{display:none}.tab-content.active{display:block}
+    /* Forms */
+    .form-group{margin-bottom:1.2rem}
+    label{display:block;font-size:.75rem;color:var(--dim);margin-bottom:.3rem;letter-spacing:.05em;text-transform:uppercase}
+    input[type="text"],input[type="email"],input[type="url"],textarea{width:100%;padding:.6rem .8rem;background:var(--card);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:.9rem;font-family:inherit;transition:border-color .3s}
+    input:focus,textarea:focus{outline:none;border-color:var(--accent)}
+    textarea{min-height:80px;resize:vertical}
+    .row{display:flex;gap:1rem}.row>*{flex:1}
+    @media(max-width:768px){.row{flex-direction:column}}
+    /* Buttons */
+    .btn{padding:.5rem 1.2rem;border:none;border-radius:4px;font-size:.82rem;cursor:pointer;transition:all .3s;font-family:inherit;letter-spacing:.03em}
+    .btn-primary{background:var(--accent);color:#000}.btn-primary:hover{background:#e6c04a}
+    .btn-danger{background:var(--danger);color:#fff}.btn-danger:hover{background:#c0392b}
+    .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+    .btn-sm{padding:.3rem .7rem;font-size:.78rem}
+    .btn-group{display:flex;gap:.6rem;margin-top:.8rem;flex-wrap:wrap}
+    /* Cards */
+    .card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1.2rem;margin-bottom:.8rem}
+    .card h3{font-size:.95rem;font-weight:500;margin-bottom:.8rem;color:var(--accent)}
+    .card-dark{background:var(--card2)}
+    .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem}
+    .card-header strong{font-size:.9rem}
+    /* Image upload */
+    .upload-zone{border:2px dashed var(--border);border-radius:6px;padding:1.5rem;text-align:center;cursor:pointer;transition:all .3s;margin:.6rem 0;position:relative}
+    .upload-zone:hover,.upload-zone.dragover{border-color:var(--accent);background:rgba(212,175,55,.04)}
+    .upload-zone p{color:var(--dim);font-size:.82rem}
+    .upload-zone input{display:none}
+    .upload-zone.uploading p{color:var(--accent)}
+    /* Image grid with cover selection */
+    .img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.6rem;margin:.6rem 0}
+    .img-thumb{position:relative;aspect-ratio:1;border-radius:4px;overflow:hidden;border:2px solid transparent;cursor:pointer;transition:border-color .2s}
+    .img-thumb img{width:100%;height:100%;object-fit:cover}
+    .img-thumb:hover{border-color:var(--accent)}
+    .img-thumb.is-cover{border-color:var(--accent)}
+    .img-thumb .cover-badge{position:absolute;top:4px;left:4px;background:var(--accent);color:#000;font-size:.65rem;padding:1px 5px;border-radius:2px;font-weight:700}
+    .img-thumb .del-btn{position:absolute;top:4px;right:4px;background:var(--danger);color:#fff;border:none;width:20px;height:20px;border-radius:50%;font-size:.7rem;cursor:pointer;display:none;align-items:center;justify-content:center;line-height:1}
+    .img-thumb:hover .del-btn{display:flex}
+    /* Toast */
+    .toast{position:fixed;bottom:2rem;right:2rem;padding:.7rem 1.4rem;border-radius:4px;font-size:.85rem;opacity:0;transition:opacity .3s;z-index:1000;color:#fff}
+    .toast.show{opacity:1}
+    .toast-success{background:var(--success)}
+    .toast-info{background:var(--info)}
+    /* Status bar */
+    .status-bar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);padding:.4rem 2rem;font-size:.75rem;color:var(--dim);display:flex;justify-content:space-between;z-index:50}
+    .status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:.4rem;background:var(--success)}
+    .hint{font-size:.72rem;color:var(--dim);margin-top:.2rem;font-style:italic}
+  </style>
+</head>
+<body>
+
+<div class="admin-header">
+  <h1>LUMOS CREATIVE 后台</h1>
+  <a href="/" target="_blank">↗ 预览网站</a>
+</div>
+
+<div class="container">
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('projects',this)">项目管理</div>
+    <div class="tab" onclick="switchTab('about',this)">关于页面</div>
+    <div class="tab" onclick="switchTab('work',this)">工作经历</div>
+    <div class="tab" onclick="switchTab('services',this)">服务</div>
+    <div class="tab" onclick="switchTab('site',this)">站点设置</div>
+  </div>
+
+  <!-- ==================== 项目管理 ==================== -->
+  <div class="tab-content active" id="tab-projects">
+    <div class="btn-group" style="margin-bottom:1rem">
+      <button class="btn btn-primary" onclick="addCategory()">+ 新建分类</button>
+    </div>
+    <div id="categoriesEditor"></div>
+    <div class="btn-group"><button class="btn btn-primary" onclick="saveAll()">💾 保存并发布</button></div>
+  </div>
+
+  <!-- ==================== 关于页面 ==================== -->
+  <div class="tab-content" id="tab-about">
+    <div class="card">
+      <h3>个人信息</h3>
+      <div class="row">
+        <div class="form-group"><label>姓名 (中文)</label><input type="text" id="about_name_zh"></div>
+        <div class="form-group"><label>姓名 (英文)</label><input type="text" id="about_name_en"></div>
+      </div>
+      <div class="row">
+        <div class="form-group"><label>头衔 (中文)</label><input type="text" id="about_title_zh"></div>
+        <div class="form-group"><label>头衔 (英文)</label><input type="text" id="about_title_en"></div>
+      </div>
+      <div class="form-group">
+        <label>个人照片</label>
+        <div style="display:flex;gap:1rem;align-items:flex-start">
+          <img id="aboutPhotoPreview" src="" style="width:100px;height:120px;object-fit:cover;border-radius:4px;border:1px solid var(--border);background:var(--card2)">
+          <div class="upload-zone" style="flex:1" onclick="this.querySelector('input').click()">
+            <p>点击上传新照片</p>
+            <input type="file" accept="image/*" onchange="uploadAboutPhoto(this)">
+          </div>
+        </div>
+      </div>
+      <div class="form-group"><label>引言 (中文)</label><textarea id="about_quote_zh"></textarea></div>
+      <div class="form-group"><label>引言 (英文)</label><textarea id="about_quote_en"></textarea></div>
+      <div class="form-group"><label>简介 (中文)</label><textarea id="about_bio_zh" style="min-height:120px"></textarea></div>
+      <div class="form-group"><label>简介 (英文)</label><textarea id="about_bio_en" style="min-height:120px"></textarea></div>
+      <div class="form-group"><label>教育背景 (中文)</label><textarea id="about_education_zh"></textarea></div>
+      <div class="form-group"><label>教育背景 (英文)</label><textarea id="about_education_en"></textarea></div>
+    </div>
+    <div class="btn-group"><button class="btn btn-primary" onclick="saveAll()">💾 保存并发布</button></div>
+  </div>
+
+  <!-- ==================== 工作经历 ==================== -->
+  <div class="tab-content" id="tab-work">
+    <div class="btn-group" style="margin-bottom:1rem">
+      <button class="btn btn-primary" onclick="addWorkExp()">+ 添加工作经历</button>
+    </div>
+    <div id="workEditor"></div>
+    <div class="btn-group"><button class="btn btn-primary" onclick="saveAll()">💾 保存并发布</button></div>
+  </div>
+
+  <!-- ==================== 服务 ==================== -->
+  <div class="tab-content" id="tab-services">
+    <div class="btn-group" style="margin-bottom:1rem">
+      <button class="btn btn-primary" onclick="addService()">+ 添加服务</button>
+    </div>
+    <div id="servicesEditor"></div>
+    <div class="btn-group"><button class="btn btn-primary" onclick="saveAll()">💾 保存并发布</button></div>
+  </div>
+
+  <!-- ==================== 站点设置 ==================== -->
+  <div class="tab-content" id="tab-site">
+    <div class="card">
+      <h3>品牌</h3>
+      <div class="row">
+        <div class="form-group"><label>网站标题 (英文)</label><input type="text" id="site_title_en"></div>
+        <div class="form-group"><label>网站标题 (中文)</label><input type="text" id="site_title_zh"></div>
+      </div>
+      <div class="row">
+        <div class="form-group"><label>副标题 (英文)</label><input type="text" id="site_subtitle_en"></div>
+        <div class="form-group"><label>副标题 (中文)</label><input type="text" id="site_subtitle_zh"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>联系方式</h3>
+      <div class="row">
+        <div class="form-group"><label>LinkedIn</label><input type="url" id="link_linkedin"></div>
+        <div class="form-group"><label>GitHub</label><input type="url" id="link_github"></div>
+      </div>
+      <div class="row">
+        <div class="form-group"><label>Email</label><input type="email" id="link_email"></div>
+        <div class="form-group"><label>小红书</label><input type="url" id="link_xiaohongshu"></div>
+      </div>
+    </div>
+    <div class="btn-group"><button class="btn btn-primary" onclick="saveAll()">💾 保存并发布</button></div>
+  </div>
+</div>
+
+<div class="status-bar">
+  <span><span class="status-dot"></span>后台保存后，前台自动刷新，无需额外操作</span>
+  <span id="lastSaved"></span>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let data = null;
+
+// ========== Init ==========
+async function init() {
+  data = await (await fetch('/api/data')).json();
+  populateAll();
+}
+
+function populateAll() {
+  // Site
+  val('site_title_en', data.site.title_en);
+  val('site_title_zh', data.site.title_zh);
+  val('site_subtitle_en', data.site.subtitle_en);
+  val('site_subtitle_zh', data.site.subtitle_zh);
+  val('link_linkedin', data.links.linkedin);
+  val('link_github', data.links.github);
+  val('link_email', data.links.email);
+  val('link_xiaohongshu', data.links.xiaohongshu);
+  // About
+  val('about_name_en', data.about.name_en);
+  val('about_name_zh', data.about.name_zh);
+  val('about_title_en', data.about.title_en);
+  val('about_title_zh', data.about.title_zh);
+  val('about_quote_en', data.about.quote_en);
+  val('about_quote_zh', data.about.quote_zh);
+  val('about_bio_en', data.about.bio_en);
+  val('about_bio_zh', data.about.bio_zh);
+  val('about_education_en', data.about.education_en);
+  val('about_education_zh', data.about.education_zh);
+  const preview = document.getElementById('aboutPhotoPreview');
+  if (data.about.photo) preview.src = data.about.photo;
+
+  renderCategories();
+  renderWork();
+  renderServices();
+}
+
+function val(id, v) { const el = document.getElementById(id); if (el) { if (v !== undefined) el.value = v || ''; else return el.value; } }
+
+// ========== Tabs ==========
+function switchTab(tab, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
+}
+
+// ========== Save ==========
+async function saveAll() {
+  collectAll();
+  await fetch('/api/data', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+  document.getElementById('lastSaved').textContent = '上次保存: ' + new Date().toLocaleTimeString();
+  toast('已保存，前台已自动更新 ✓', 'success');
+}
+
+function collectAll() {
+  data.site.title_en = val('site_title_en');
+  data.site.title_zh = val('site_title_zh');
+  data.site.subtitle_en = val('site_subtitle_en');
+  data.site.subtitle_zh = val('site_subtitle_zh');
+  data.links.linkedin = val('link_linkedin');
+  data.links.github = val('link_github');
+  data.links.email = val('link_email');
+  data.links.xiaohongshu = val('link_xiaohongshu');
+  data.about.name_en = val('about_name_en');
+  data.about.name_zh = val('about_name_zh');
+  data.about.title_en = val('about_title_en');
+  data.about.title_zh = val('about_title_zh');
+  data.about.quote_en = val('about_quote_en');
+  data.about.quote_zh = val('about_quote_zh');
+  data.about.bio_en = val('about_bio_en');
+  data.about.bio_zh = val('about_bio_zh');
+  data.about.education_en = val('about_education_en');
+  data.about.education_zh = val('about_education_zh');
+  collectCategories();
+  collectWork();
+  collectServices();
+}
+
+// ========== Toast ==========
+function toast(msg, type) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast toast-' + (type || 'success') + ' show';
+  setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+// ========== Upload helper (Vercel Blob: PUT raw file) ==========
+async function uploadFile(file, pathPrefix) {
+  const filename = pathPrefix + '/' + Date.now() + '-' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+  const r = await fetch('/api/upload?filename=' + encodeURIComponent(filename), {
+    method: 'PUT',
+    body: file,
+  });
+  const result = await r.json();
+  return result.url; // full Vercel Blob URL
+}
+
+// ========== About photo upload ==========
+async function uploadAboutPhoto(input) {
+  if (!input.files[0]) return;
+  toast('上传中...', 'info');
+  const url = await uploadFile(input.files[0], 'about');
+  if (url) {
+    data.about.photo = url;
+    document.getElementById('aboutPhotoPreview').src = url;
+    await saveAll();
+  }
+}
+
+// ================================================================
+//  PROJECTS EDITOR  —  the core "foolproof" experience
+// ================================================================
+function renderCategories() {
+  const box = document.getElementById('categoriesEditor');
+  box.innerHTML = '';
+  data.categories.forEach((cat, ci) => {
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `
+      <div class="card-header">
+        <h3 style="margin:0">${cat.name_zh} / ${cat.name_en}</h3>
+        <div class="btn-group" style="margin:0">
+          <button class="btn btn-outline btn-sm" onclick="addProjectTo(${ci})">+ 添加项目</button>
+          <button class="btn btn-danger btn-sm" onclick="removeCat(${ci})">删除分类</button>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom:.6rem">
+        <div class="form-group" style="margin:0"><label>分类名 (中文)</label><input type="text" class="cat-zh" data-ci="${ci}" value="${esc(cat.name_zh)}"></div>
+        <div class="form-group" style="margin:0"><label>分类名 (英文)</label><input type="text" class="cat-en" data-ci="${ci}" value="${esc(cat.name_en)}"></div>
+      </div>
+      <div id="plist-${ci}"></div>
+    `;
+    box.appendChild(div);
+
+    const plist = div.querySelector('#plist-' + ci);
+    cat.projects.forEach((proj, pi) => renderProjectCard(plist, proj, ci, pi));
+  });
+}
+
+function renderProjectCard(container, proj, ci, pi) {
+  const folder = proj.imageFolder || proj.id || ('proj-' + ci + '-' + pi);
+  // ensure folder is set
+  if (!proj.imageFolder) proj.imageFolder = folder;
+
+  const div = document.createElement('div');
+  div.className = 'card card-dark';
+  div.innerHTML = `
+    <div class="card-header">
+      <strong>${proj.title_zh || proj.title_en || '新项目'}</strong>
+      <button class="btn btn-danger btn-sm" onclick="removeProj(${ci},${pi})">删除项目</button>
+    </div>
+    <div class="row">
+      <div class="form-group"><label>标题 (中文)</label><input type="text" class="p-tzh" data-ci="${ci}" data-pi="${pi}" value="${esc(proj.title_zh)}"></div>
+      <div class="form-group"><label>标题 (英文)</label><input type="text" class="p-ten" data-ci="${ci}" data-pi="${pi}" value="${esc(proj.title_en)}"></div>
+    </div>
+    <div class="form-group"><label>外部链接 (可选)</label><input type="text" class="p-link" data-ci="${ci}" data-pi="${pi}" value="${esc(proj.link)}"></div>
+    <div class="row">
+      <div class="form-group"><label>描述 (中文)</label><textarea class="p-szh" data-ci="${ci}" data-pi="${pi}">${sectionsToText(proj.sections_zh)}</textarea><div class="hint">多段用空行分隔；小标题用"标题::内容"格式</div></div>
+      <div class="form-group"><label>描述 (英文)</label><textarea class="p-sen" data-ci="${ci}" data-pi="${pi}">${sectionsToText(proj.sections_en)}</textarea></div>
+    </div>
+    <!-- Images -->
+    <label>项目图片 <span style="font-weight:400;text-transform:none;font-style:italic">（点击图片设为封面，悬浮右上角 × 删除）</span></label>
+    <div class="img-grid" id="imgs-${ci}-${pi}"></div>
+    <div class="upload-zone" id="uz-${ci}-${pi}"
+         onclick="this.querySelector('input').click()"
+         ondragover="event.preventDefault();this.classList.add('dragover')"
+         ondragleave="this.classList.remove('dragover')"
+         ondrop="handleDrop(event,${ci},${pi})">
+      <p>点击或拖拽上传图片</p>
+      <input type="file" accept="image/*" multiple onchange="uploadProjectImgs(this.files,${ci},${pi})">
+    </div>
+  `;
+  container.appendChild(div);
+
+  // Load existing images
+  loadProjectImages(ci, pi);
+}
+
+function loadProjectImages(ci, pi) {
+  const grid = document.getElementById('imgs-' + ci + '-' + pi);
+  if (!grid) return;
+  const proj = data.categories[ci].projects[pi];
+  const images = proj.images || [];
+  const currentCover = proj.cover;
+  grid.innerHTML = '';
+  images.forEach((url, idx) => {
+    const thumb = document.createElement('div');
+    thumb.className = 'img-thumb' + (url === currentCover ? ' is-cover' : '');
+    thumb.innerHTML = `
+      <img src="${url}" loading="lazy">
+      ${url === currentCover ? '<span class="cover-badge">封面</span>' : ''}
+      <button class="del-btn" onclick="event.stopPropagation();deleteImg(${ci},${pi},${idx})">&times;</button>
+    `;
+    thumb.onclick = () => setCover(url, ci, pi);
+    grid.appendChild(thumb);
+  });
+}
+
+function setCover(url, ci, pi) {
+  data.categories[ci].projects[pi].cover = url;
+  loadProjectImages(ci, pi);
+  toast('封面已更新，点击保存发布', 'info');
+}
+
+async function deleteImg(ci, pi, imgIdx) {
+  if (!confirm('删除这张图片？')) return;
+  const proj = data.categories[ci].projects[pi];
+  const url = proj.images[imgIdx];
+  // Delete from Blob if it's a blob URL
+  if (url && url.includes('blob.vercel-storage.com')) {
+    await fetch('/api/delete-image', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({url}) });
+  }
+  proj.images.splice(imgIdx, 1);
+  if (proj.cover === url) proj.cover = proj.images[0] || '';
+  loadProjectImages(ci, pi);
+  toast('图片已删除');
+}
+
+async function uploadProjectImgs(files, ci, pi) {
+  if (!files || !files.length) return;
+  const proj = data.categories[ci].projects[pi];
+  if (!proj.images) proj.images = [];
+  const zone = document.getElementById('uz-' + ci + '-' + pi);
+  zone.classList.add('uploading');
+  zone.querySelector('p').textContent = `上传中... (${files.length} 张)`;
+
+  const uploaded = [];
+  for (const file of files) {
+    try {
+      const url = await uploadFile(file, 'projects/' + (proj.imageFolder || proj.id));
+      if (url) { uploaded.push(url); proj.images.push(url); }
+    } catch (e) { console.error('Upload failed:', e); }
+  }
+
+  zone.classList.remove('uploading');
+  zone.querySelector('p').textContent = '点击或拖拽上传图片';
+
+  if (uploaded.length) {
+    if (!proj.cover) {
+      proj.cover = uploaded[0];
+      toast(`已上传 ${uploaded.length} 张，首张自动设为封面`);
+    } else {
+      toast(`已上传 ${uploaded.length} 张图片`);
+    }
+    loadProjectImages(ci, pi);
+  }
+}
+
+function handleDrop(e, ci, pi) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('dragover');
+  if (e.dataTransfer.files.length) uploadProjectImgs(e.dataTransfer.files, ci, pi);
+}
+
+// ========== Sections helpers ==========
+function sectionsToText(sections) {
+  if (!sections || !sections.length) return '';
+  return sections.map(s => {
+    if (s.subtitle) return s.subtitle + '::' + s.text;
+    return s.text;
+  }).join('\n\n');
+}
+
+function textToSections(text) {
+  if (!text.trim()) return [];
+  return text.split(/\n\s*\n/).map(block => {
+    block = block.trim();
+    if (!block) return null;
+    if (block.includes('::')) {
+      const idx = block.indexOf('::');
+      return { subtitle: block.slice(0, idx).trim(), text: block.slice(idx + 2).trim() };
+    }
+    return { subtitle: '', text: block };
+  }).filter(Boolean);
+}
+
+function esc(s) { return (s || '').replace(/"/g, '&quot;'); }
+
+// ========== Collect categories ==========
+function collectCategories() {
+  document.querySelectorAll('.cat-zh').forEach(el => data.categories[el.dataset.ci].name_zh = el.value);
+  document.querySelectorAll('.cat-en').forEach(el => data.categories[el.dataset.ci].name_en = el.value);
+  document.querySelectorAll('.p-tzh').forEach(el => data.categories[el.dataset.ci].projects[el.dataset.pi].title_zh = el.value);
+  document.querySelectorAll('.p-ten').forEach(el => data.categories[el.dataset.ci].projects[el.dataset.pi].title_en = el.value);
+  document.querySelectorAll('.p-link').forEach(el => data.categories[el.dataset.ci].projects[el.dataset.pi].link = el.value);
+  document.querySelectorAll('.p-szh').forEach(el => data.categories[el.dataset.ci].projects[el.dataset.pi].sections_zh = textToSections(el.value));
+  document.querySelectorAll('.p-sen').forEach(el => data.categories[el.dataset.ci].projects[el.dataset.pi].sections_en = textToSections(el.value));
+}
+
+function addCategory() {
+  data.categories.push({ id:'cat-'+Date.now(), name_en:'New Category', name_zh:'新分类', projects:[] });
+  renderCategories();
+}
+function removeCat(ci) {
+  if (confirm('确定删除此分类及其所有项目？')) { data.categories.splice(ci,1); renderCategories(); }
+}
+function addProjectTo(ci) {
+  const id = 'proj-' + Date.now();
+  data.categories[ci].projects.push({ id, title_en:'', title_zh:'', cover:'', imageFolder:id, link:'', sections_zh:[], sections_en:[] });
+  renderCategories();
+}
+function removeProj(ci,pi) {
+  if (confirm('确定删除此项目？')) { data.categories[ci].projects.splice(pi,1); renderCategories(); }
+}
+
+// ========== Work Experience ==========
+function renderWork() {
+  const box = document.getElementById('workEditor');
+  box.innerHTML = '';
+  data.workExperience.forEach((exp, i) => {
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `
+      <div class="card-header"><strong>${exp.title_zh||'新职位'}</strong><button class="btn btn-danger btn-sm" onclick="removeWork(${i})">删除</button></div>
+      <div class="row">
+        <div class="form-group"><label>职位 (中文)</label><input type="text" class="w-tzh" data-i="${i}" value="${esc(exp.title_zh)}"></div>
+        <div class="form-group"><label>职位 (英文)</label><input type="text" class="w-ten" data-i="${i}" value="${esc(exp.title_en)}"></div>
+      </div>
+      <div class="row">
+        <div class="form-group"><label>时间段</label><input type="text" class="w-period" data-i="${i}" value="${esc(exp.period)}"></div>
+        <div class="form-group"><label>关联图片文件夹 (可选)</label><input type="text" class="w-folder" data-i="${i}" value="${esc(exp.detailFolder)}"></div>
+      </div>
+    `;
+    box.appendChild(div);
+  });
+}
+function collectWork() {
+  document.querySelectorAll('.w-tzh').forEach(el => data.workExperience[el.dataset.i].title_zh = el.value);
+  document.querySelectorAll('.w-ten').forEach(el => data.workExperience[el.dataset.i].title_en = el.value);
+  document.querySelectorAll('.w-period').forEach(el => data.workExperience[el.dataset.i].period = el.value);
+  document.querySelectorAll('.w-folder').forEach(el => data.workExperience[el.dataset.i].detailFolder = el.value);
+}
+function addWorkExp() {
+  data.workExperience.push({ title_en:'', title_zh:'', period:'', id:'w-'+Date.now(), detailFolder:'' });
+  renderWork();
+}
+function removeWork(i) { if(confirm('删除？')){data.workExperience.splice(i,1);renderWork();} }
+
+// ========== Services ==========
+function renderServices() {
+  const box = document.getElementById('servicesEditor');
+  box.innerHTML = '';
+  data.services.forEach((svc, i) => {
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `
+      <div class="card-header"><strong>${svc.title_zh||'新服务'}</strong><button class="btn btn-danger btn-sm" onclick="removeSvc(${i})">删除</button></div>
+      <div class="row">
+        <div class="form-group"><label>服务名 (中文)</label><input type="text" class="s-tzh" data-i="${i}" value="${esc(svc.title_zh)}"></div>
+        <div class="form-group"><label>服务名 (英文)</label><input type="text" class="s-ten" data-i="${i}" value="${esc(svc.title_en)}"></div>
+      </div>
+      <div class="row">
+        <div class="form-group"><label>描述 (中文)</label><textarea class="s-dzh" data-i="${i}">${svc.desc_zh||''}</textarea></div>
+        <div class="form-group"><label>描述 (英文)</label><textarea class="s-den" data-i="${i}">${svc.desc_en||''}</textarea></div>
+      </div>
+    `;
+    box.appendChild(div);
+  });
+}
+function collectServices() {
+  document.querySelectorAll('.s-tzh').forEach(el => data.services[el.dataset.i].title_zh = el.value);
+  document.querySelectorAll('.s-ten').forEach(el => data.services[el.dataset.i].title_en = el.value);
+  document.querySelectorAll('.s-dzh').forEach(el => data.services[el.dataset.i].desc_zh = el.value);
+  document.querySelectorAll('.s-den').forEach(el => data.services[el.dataset.i].desc_en = el.value);
+}
+function addService() { data.services.push({title_en:'',title_zh:'',desc_en:'',desc_zh:''}); renderServices(); }
+function removeSvc(i) { if(confirm('删除？')){data.services.splice(i,1);renderServices();} }
+
+// ========== Start ==========
+init();
+</script>
+</body>
+</html>

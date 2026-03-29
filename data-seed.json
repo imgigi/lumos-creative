@@ -1,0 +1,505 @@
+{
+  "site": {
+    "title_en": "LUMOS CREATIVE",
+    "title_zh": "里面是·创意事务",
+    "subtitle_en": "Creative Director | Media Professional | Storyteller and IP Builder",
+    "subtitle_zh": "创意策划总监 | 媒体导演 | 故事讲述与IP构建"
+  },
+  "about": {
+    "name_en": "LU ZHANG",
+    "name_zh": "张璐",
+    "title_en": "Creative Director | Media Professional | Storyteller and IP Builder",
+    "title_zh": "创意策划总监 | 媒体人| 故事讲述与IP构建",
+    "bio_en": "With over a decade of front-line media and large-scale event experience, I am a cross-disciplinary creative professional who serves as a large-scale event director, project manager, journalist, and editor. Specializing in Storytelling and IP development, I excel at transforming creative concepts into executable online and on-site experiences by integrating media, art, and technology to craft immersive, emotionally resonant experiences.",
+    "bio_zh": "拥有十余年一线媒体与大型活动工作经验，集大型活动导演、项目经理、记者、编导、于一身的跨领域创意策划者。擅长以叙事和IP构造为核心，将创意概念转化为可落地的现场体验，融合媒体、艺术与科技，打造沉浸式、有情感共鸣的线上和现场体验。拥有丰富的海内外艺术、文化、媒介领域专业人士与机构资源，具备从创意策划到全案落地的综合能力。",
+    "quote_en": "Good ideas don't come from nowhere—they come from extensive research and groundwork, a sound way of thinking, rich industry experience, certain techniques and methods, a keen sense of generational shifts, breadth of mind, aesthetic judgment, the habit of jotting things down anytime, anywhere... and, ultimately, a moment of grace.",
+    "quote_zh": "好的创意并非凭空而来，而是来自：大量的资料收集与案头工作，一个好的思维方式，丰富的行业经验，一些技巧与方法，对“代际”的敏锐感知，思维的宽阔性，审美判断力，随时随地记录的习惯，……还有，一个天赋的时刻。",
+    "education_en": "Interactive Media Arts (MA), Tisch School of the Arts, New York University\nMember of Shanghai New Art Workers Association (NAWA)",
+    "education_zh": "纽约大学 蒂施艺术学院 交互媒体艺术硕士\n上海新文艺工作者联合会 会员",
+    "photo": "/images/about/0.jpg"
+  },
+  "workExperience": [
+    {
+      "title_en": "Director of Large-Scale Events",
+      "title_zh": "大型活动导演",
+      "period": "2022-2025",
+      "id": "director",
+      "detailFolder": "director"
+    },
+    {
+      "title_en": "Project Manager at Dragon TV",
+      "title_zh": "东方卫视中心 项目经理",
+      "period": "2019-2022",
+      "id": "project-manager",
+      "detailFolder": "project-manager"
+    },
+    {
+      "title_en": "Director of Kevin's Hour",
+      "title_zh": "《可凡倾听》编导",
+      "period": "2019-2022",
+      "id": "kevin-hour",
+      "detailFolder": "kevin-hour"
+    },
+    {
+      "title_en": "Journalist and Editor",
+      "title_zh": "《娱乐星天地》《新娱乐在线》 记者/编辑",
+      "period": "2013-2019",
+      "id": "journalist",
+      "detailFolder": "journalist"
+    }
+  ],
+  "services": [
+    {
+      "title_en": "Creative Strategy",
+      "title_zh": "创意策划",
+      "desc_en": "Brand positioning, strategic planning, taglines, content direction, topic selection",
+      "desc_zh": "品牌定位、策略规划、广告语、内容方向、选题策划"
+    },
+    {
+      "title_en": "Content Production",
+      "title_zh": "内容制作",
+      "desc_en": "Promotional videos, short videos, documentaries, exhibition imagery",
+      "desc_zh": "宣传片、短视频、纪录片、展览影像"
+    },
+    {
+      "title_en": "Event Experience",
+      "title_zh": "活动体验",
+      "desc_en": "Large-scale events, performances, exhibition curation, art + technology integration projects",
+      "desc_zh": "大型活动、演出、展览策划、艺术+科技融合项目"
+    },
+    {
+      "title_en": "Full-Service Production Management",
+      "title_zh": "全案品控",
+      "desc_en": "End-to-end execution from concept to delivery, vendor management, quality control",
+      "desc_zh": "从概念到落地的全程执行、供应商管理、品质把控"
+    },
+    {
+      "title_en": "Resource Integration",
+      "title_zh": "资源整合",
+      "desc_en": "Artist collaboration, cultural & artistic resource networking, IP development",
+      "desc_zh": "艺人合作、文化艺术资源链接、IP开发"
+    }
+  ],
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/luzhang",
+    "github": "https://github.com/LuZhang-Clab",
+    "replit": "https://replit.com",
+    "xiaohongshu": "#",
+    "email": "501615927@qq.com"
+  },
+  "categories": [
+    {
+      "id": "large-scale-events",
+      "name_en": "Large-Scale Events",
+      "name_zh": "大型活动",
+      "projects": [
+        {
+          "id": "olympic",
+          "title_en": "Urban Festival of the Olympic Qualifier Series",
+          "title_zh": "奥运会资格系列赛·上海 城市体育节",
+          "cover": "/images/home/1.jpg",
+          "imageFolder": "olympic",
+          "sections_zh": [
+            {
+              "subtitle": "欢迎盛典",
+              "text": "活动现场星光熠熠，阵容包括王一博、张杰、黄明昊、刘逸云、刘雨昕、张尕怂、周洁琼等歌手与演员。演出获得第29届亚洲电视大奖最佳综艺节目奖。"
+            },
+            {
+              "subtitle": "“有意思”非遗市集",
+              "text": "一场汇聚了好逛的市集、好看的表演、好炫的打卡装置、好牛的非遗传人以及好玩的游戏的非遗主题派对。"
+            },
+            {
+              "subtitle": "悦动巅峰派对",
+              "text": "中文、英文、法语和上海话歌词交织的动感融合，电子节拍、嘻哈、摇滚、民谣旋律与戏曲元素碰撞交织。"
+            },
+            {
+              "subtitle": "心无限·时尚之旅",
+              "text": "以绿色生活、可持续性和环保意识为核心价值的时尚主题秀。"
+            },
+            {
+              "subtitle": "炫动青春斗Show场",
+              "text": "霹雳舞、甩手舞、disco……一场融合了多种细分舞种的街舞年代秀battle比赛。"
+            }
+          ],
+          "sections_en": [
+            {
+              "subtitle": "The Opening Ceremony",
+              "text": "The event featured a star-studded lineup including Wang Yibo, Jason Zhang, and more. Won Best Entertainment at the 29th Asian Television Awards."
+            },
+            {
+              "subtitle": "A Cultural Heritage Party",
+              "text": "A cultural heritage party gathering inviting stalls, stunning performances, and dazzling installations."
+            },
+            {
+              "subtitle": "A Music Festival",
+              "text": "A dynamic fusion of Chinese, English, French, and Shanghainese lyrics, where electronic beats, hip-hop, rock, and folk melodies collided."
+            },
+            {
+              "subtitle": "A Fashion-themed Performance",
+              "text": "Built around green living, sustainability, and environmental consciousness."
+            },
+            {
+              "subtitle": "A Street Dance Party",
+              "text": "A street dance battle blending breaking, waacking, disco, and more."
+            }
+          ],
+          "images": [
+            "/images/projects/olympic/1.jpg",
+            "/images/projects/olympic/10.JPG",
+            "/images/projects/olympic/11.JPG",
+            "/images/projects/olympic/12.JPG",
+            "/images/projects/olympic/13.JPG",
+            "/images/projects/olympic/14.jpg",
+            "/images/projects/olympic/15.jpg",
+            "/images/projects/olympic/16.jpg",
+            "/images/projects/olympic/17.jpg",
+            "/images/projects/olympic/2.jpg",
+            "/images/projects/olympic/3.jpg",
+            "/images/projects/olympic/4.jpg",
+            "/images/projects/olympic/5.jpg",
+            "/images/projects/olympic/6.jpg",
+            "/images/projects/olympic/7.JPG",
+            "/images/projects/olympic/8.jpg",
+            "/images/projects/olympic/9.jpg"
+          ]
+        },
+        {
+          "id": "film-festival",
+          "title_en": "Shanghai International Film Festival",
+          "title_zh": "上海国际电影节开、闭幕式及红毯仪式",
+          "cover": "/images/home/2.jpg",
+          "imageFolder": "film-festival",
+          "sections_zh": [],
+          "sections_en": [],
+          "link": "https://www.siff.com",
+          "images": [
+            "/images/projects/film-festival/1.jpg",
+            "/images/projects/film-festival/2.jpg",
+            "/images/projects/film-festival/3.jpg"
+          ]
+        },
+        {
+          "id": "brand-day",
+          "title_en": "China Brand Day Gala",
+          "title_zh": "中国品牌日晚会",
+          "cover": "/images/home/3.jpg",
+          "imageFolder": "brand-day",
+          "sections_zh": [],
+          "sections_en": [],
+          "images": [
+            "/images/projects/brand-day/1.jpg",
+            "/images/projects/brand-day/2.jpg",
+            "/images/projects/brand-day/3.jpg",
+            "/images/projects/brand-day/4.jpg",
+            "/images/projects/brand-day/5.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "art-tech",
+      "name_en": "Art & Technology",
+      "name_zh": "艺术&科技",
+      "projects": [
+        {
+          "id": "resonance",
+          "title_en": "Interactive Art Installation: The Starfield of Resonance",
+          "title_zh": "交互艺术装置《共鸣星域》",
+          "cover": "/images/home/14.jpg",
+          "imageFolder": "resonance",
+          "sections_zh": [
+            {
+              "subtitle": "",
+              "text": "【入选上海Future Lab 2025展览和获邀迪拜Prototype for Humanity2026参展】\n情感化实时交互艺术装置：通过计算机视觉识别用户表情，触发实时生成的视听内容反馈。"
+            }
+          ],
+          "sections_en": [
+            {
+              "subtitle": "",
+              "text": "[Selected for Future Lab 2025 Exhibition in Shanghai and Invited to Exhibit at Prototype for Humanity 2026 in Dubai]\nAn AI-driven project where two participants each control a drifting star on screen."
+            }
+          ],
+          "images": [
+            "/images/projects/resonance/1.jpg"
+          ]
+        },
+        {
+          "id": "night-ode",
+          "title_en": "Interactive Art Installation: Ode to the Night",
+          "title_zh": "交互艺术装置《夜的颂歌》",
+          "cover": "/images/home/8.jpg",
+          "imageFolder": "night-ode",
+          "sections_zh": [
+            {
+              "subtitle": "",
+              "text": "沉浸式意境空间交互装置：通过将参与者物理动作实时映射为虚拟星空的位移，创造“星空随动”的沉浸体验。作品在纽约进行了展览。"
+            }
+          ],
+          "sections_en": [
+            {
+              "subtitle": "",
+              "text": "Participants enter the installation space and put on interactive glasses; as they move, the stars above shimmer and follow the direction of their gaze. Exhibited in New York."
+            }
+          ],
+          "images": [
+            "/images/projects/night-ode/1.jpg",
+            "/images/projects/night-ode/2.jpg",
+            "/images/projects/night-ode/3.jpg",
+            "/images/projects/night-ode/4.jpg",
+            "/images/projects/night-ode/5.jpg",
+            "/images/projects/night-ode/6.jpg",
+            "/images/projects/night-ode/7.jpg"
+          ]
+        },
+        {
+          "id": "science-friend",
+          "title_en": "Interactive Web Game: Scientific Friend",
+          "title_zh": "网页交互游戏《科学的朋友》",
+          "cover": "/images/home/9.png",
+          "imageFolder": "science-friend",
+          "sections_zh": [
+            {
+              "subtitle": "",
+              "text": "内容数据化与人格化推荐系统：通过构建虚构人物的多维度标签体系并实现用户匹配。"
+            }
+          ],
+          "sections_en": [
+            {
+              "subtitle": "",
+              "text": "A platform that helps the mad scientist find virtual friends through multi-dimensional tagging."
+            }
+          ],
+          "images": [
+            "/images/projects/science-friend/1.png",
+            "/images/projects/science-friend/2.png"
+          ]
+        },
+        {
+          "id": "puzzle",
+          "title_en": "Interactive Web Game: Puzzles",
+          "title_zh": "网页交互游戏《拼图》",
+          "cover": "/images/home/10.png",
+          "imageFolder": "puzzle",
+          "sections_zh": [
+            {
+              "subtitle": "",
+              "text": "在线多人拼图游戏，需要团队合作，在限定时间内完成拼图。"
+            }
+          ],
+          "sections_en": [
+            {
+              "subtitle": "",
+              "text": "An online multiplayer jigsaw puzzle game that encourages teamwork within a set time limit."
+            }
+          ],
+          "images": [
+            "/images/projects/puzzle/1.jpg.jpg",
+            "/images/projects/puzzle/2.png"
+          ]
+        },
+        {
+          "id": "conqueror",
+          "title_en": "Interactive Web Game: Conqueror",
+          "title_zh": "网页交互游戏《征服者》",
+          "cover": "/images/home/11.png",
+          "imageFolder": "conqueror",
+          "sections_zh": [
+            {
+              "subtitle": "",
+              "text": "叙事游戏化与轻量化产品设计：基于卡牌历史人物的策略游戏。"
+            }
+          ],
+          "sections_en": [
+            {
+              "subtitle": "",
+              "text": "A Monopoly-inspired territory battle game using poker face cards."
+            }
+          ],
+          "images": [
+            "/images/projects/conqueror/1.png",
+            "/images/projects/conqueror/2.png",
+            "/images/projects/conqueror/3.png"
+          ]
+        },
+        {
+          "id": "cibaoo",
+          "title_en": "Interactive Web Game: Wordie",
+          "title_zh": "网页交互游戏《词宝》",
+          "cover": "/images/home/12.jpeg",
+          "imageFolder": "cibaoo",
+          "sections_zh": [
+            {
+              "subtitle": "",
+              "text": "场景化交互学习产品，结合图像识别技术的双语学习工具。"
+            }
+          ],
+          "sections_en": [
+            {
+              "subtitle": "",
+              "text": "A bilingual learning tool developed with image recognition technology."
+            }
+          ],
+          "images": [
+            "/images/projects/cibaoo/1.jpeg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "experiments",
+      "name_en": "Creative Experiments",
+      "name_zh": "创意实验",
+      "projects": [
+        {
+          "id": "nature",
+          "title_en": "Art Installation: Under the Nature",
+          "title_zh": "艺术装置《自然之下》",
+          "cover": "/images/home/16.jpg",
+          "imageFolder": "nature",
+          "sections_zh": [
+            {
+              "subtitle": "",
+              "text": "人们不断向自然索取，使得代表自然的大树变得不堪重负。该项目在柏林展出。"
+            }
+          ],
+          "sections_en": [
+            {
+              "subtitle": "",
+              "text": "Humanity constantly takes from nature, burdening the tree that represents nature. Exhibited in Berlin."
+            }
+          ],
+          "images": [
+            "/images/projects/nature/1.jpg",
+            "/images/projects/nature/2.jpg",
+            "/images/projects/nature/3.jpg",
+            "/images/projects/nature/4.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "media-projects",
+      "name_en": "Media Projects",
+      "name_zh": "媒体项目",
+      "projects": [
+        {
+          "id": "narrative",
+          "title_en": "In-depth Interview",
+          "title_zh": "人物叙事",
+          "cover": "/images/home/4.jpg",
+          "imageFolder": "narrative",
+          "sections_zh": [
+            {
+              "subtitle": "",
+              "text": "涵盖政治、文艺、学术、娱乐等各界代表，如：陈元、叶锦添、于和伟、谭松韵、马伯庸、邓紫棋等。"
+            }
+          ],
+          "sections_en": [
+            {
+              "subtitle": "",
+              "text": "Featuring representatives from politics, arts, academia, entertainment including Tim Yip, Yu Hewei, Ma Boyong, G.E.M. Tang and others."
+            }
+          ],
+          "images": [
+            "/images/projects/narrative/1.jpg",
+            "/images/projects/narrative/2.jpg",
+            "/images/projects/narrative/3.jpg"
+          ]
+        },
+        {
+          "id": "instaknow",
+          "title_en": "AI Video: Instaknow",
+          "title_zh": "AI视频《Instaknow》",
+          "cover": "/images/home/13.jpg",
+          "imageFolder": "instaknow",
+          "sections_zh": [
+            {
+              "subtitle": "",
+              "text": "多模态AIGC短视频生成管线：综合运用Suno、PixVerse等模型，完成端到端科幻短片创作。"
+            }
+          ],
+          "sections_en": [
+            {
+              "subtitle": "",
+              "text": "Multimodal AIGC Short Video Generation Pipeline using Suno and PixVerse for end-to-end sci-fi short film creation."
+            }
+          ],
+          "images": [
+            "/images/projects/instaknow/1.jpg.jpg",
+            "/images/projects/instaknow/2.jpg",
+            "/images/projects/instaknow/3.jpg.jpg",
+            "/images/projects/instaknow/4.jpg.jpg",
+            "/images/projects/instaknow/5.jpg",
+            "/images/projects/instaknow/6.jpg"
+          ]
+        },
+        {
+          "id": "50days",
+          "title_en": "AI Visual Design: 50 Days of Making",
+          "title_zh": "AI视觉设计《重构五十日》",
+          "cover": "/images/home/21.jpg",
+          "imageFolder": "50days",
+          "sections_zh": [
+            {
+              "subtitle": "",
+              "text": "连续50天，使用AI绘图工具，以全新视角创作戏剧和影视中的经典人物造型。"
+            }
+          ],
+          "sections_en": [
+            {
+              "subtitle": "",
+              "text": "50 consecutive days of using AI drawing tools to reimagine classic character designs from theater, film, and television."
+            }
+          ],
+          "images": [
+            "/images/projects/50days/1.jpg",
+            "/images/projects/50days/10.jpg",
+            "/images/projects/50days/11.jpg",
+            "/images/projects/50days/12.jpg",
+            "/images/projects/50days/13.jpg",
+            "/images/projects/50days/14.jpg",
+            "/images/projects/50days/15.jpg",
+            "/images/projects/50days/16.jpg",
+            "/images/projects/50days/17.jpg",
+            "/images/projects/50days/18.jpg",
+            "/images/projects/50days/19.jpg",
+            "/images/projects/50days/2.jpg",
+            "/images/projects/50days/20.jpg",
+            "/images/projects/50days/21.jpg",
+            "/images/projects/50days/22.jpg",
+            "/images/projects/50days/23.jpg",
+            "/images/projects/50days/24.jpg",
+            "/images/projects/50days/25.jpg",
+            "/images/projects/50days/26.jpg",
+            "/images/projects/50days/27.jpg",
+            "/images/projects/50days/28.jpg",
+            "/images/projects/50days/29.jpg",
+            "/images/projects/50days/3.jpg",
+            "/images/projects/50days/30.jpg",
+            "/images/projects/50days/31.jpg",
+            "/images/projects/50days/32.jpg",
+            "/images/projects/50days/33.jpg",
+            "/images/projects/50days/34.jpg",
+            "/images/projects/50days/35.jpg",
+            "/images/projects/50days/36.jpg",
+            "/images/projects/50days/37.jpg",
+            "/images/projects/50days/38.jpg",
+            "/images/projects/50days/39.jpg",
+            "/images/projects/50days/4.jpg",
+            "/images/projects/50days/40.jpg",
+            "/images/projects/50days/41.jpg",
+            "/images/projects/50days/42.jpg",
+            "/images/projects/50days/43.jpg",
+            "/images/projects/50days/44.jpg",
+            "/images/projects/50days/45.jpg",
+            "/images/projects/50days/5.jpg",
+            "/images/projects/50days/6.jpg",
+            "/images/projects/50days/7.jpg",
+            "/images/projects/50days/8.jpg",
+            "/images/projects/50days/9.jpg"
+          ]
+        }
+      ]
+    }
+  ]
+}
