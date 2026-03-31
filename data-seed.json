@@ -1,18 +1,16 @@
 {
   "site": {
     "title_en": "LUMOS CREATIVE",
-    "title_zh": "里面是·创意事务",
-    "subtitle_en": "Creative Director | Media Professional | Storyteller and IP Builder",
-    "subtitle_zh": "创意策划总监 | 媒体导演 | 故事讲述与IP构建"
+    "title_zh": "里面是·创意事务"
   },
   "about": {
     "name_en": "LU ZHANG",
     "name_zh": "张璐",
     "title_en": "Creative Director | Media Professional | Storyteller and IP Builder",
-    "title_zh": "创意策划总监 | 媒体人| 故事讲述与IP构建",
-    "bio_en": "With over a decade of front-line media and large-scale event experience, I am a cross-disciplinary creative professional who serves as a large-scale event director, project manager, journalist, and editor. Specializing in Storytelling and IP development, I excel at transforming creative concepts into executable online and on-site experiences by integrating media, art, and technology to craft immersive, emotionally resonant experiences.",
+    "title_zh": "创意策划总监 | 媒体人 | 故事讲述与IP构建",
+    "bio_en": "With over a decade of front-line media and large-scale event experience, I am a cross-disciplinary creative professional who serves as a large-scale event director, project manager, journalist, and editor. Specializing in Storytelling and IP development, I excel at transforming creative concepts into executable online and on-site experiences by integrating media, art, and technology to craft immersive, emotionally resonant experiences. I also bring extensive connections with professionals and institutions in the arts, culture, and media sectors both domestically and internationally, along with comprehensive capabilities spanning from creative strategy to full-scale project execution.",
     "bio_zh": "拥有十余年一线媒体与大型活动工作经验，集大型活动导演、项目经理、记者、编导、于一身的跨领域创意策划者。擅长以叙事和IP构造为核心，将创意概念转化为可落地的现场体验，融合媒体、艺术与科技，打造沉浸式、有情感共鸣的线上和现场体验。拥有丰富的海内外艺术、文化、媒介领域专业人士与机构资源，具备从创意策划到全案落地的综合能力。",
-    "quote_en": "Good ideas don't come from nowhere—they come from extensive research and groundwork, a sound way of thinking, rich industry experience, certain techniques and methods, a keen sense of generational shifts, breadth of mind, aesthetic judgment, the habit of jotting things down anytime, anywhere... and, ultimately, a moment of grace.",
+    "quote_en": "Good ideas don’t come from nowhere—they come from extensive research and groundwork, a sound way of thinking, rich industry experience, certain techniques and methods, a keen sense of generational shifts, breadth of mind, aesthetic judgment, the habit of jotting things down anytime, anywhere... and, ultimately, a moment of grace.",
     "quote_zh": "好的创意并非凭空而来，而是来自：大量的资料收集与案头工作，一个好的思维方式，丰富的行业经验，一些技巧与方法，对“代际”的敏锐感知，思维的宽阔性，审美判断力，随时随地记录的习惯，……还有，一个天赋的时刻。",
     "education_en": "Interactive Media Arts (MA), Tisch School of the Arts, New York University\nMember of Shanghai New Art Workers Association (NAWA)",
     "education_zh": "纽约大学 蒂施艺术学院 交互媒体艺术硕士\n上海新文艺工作者联合会 会员",
@@ -24,28 +22,100 @@
       "title_zh": "大型活动导演",
       "period": "2022-2025",
       "id": "director",
-      "detailFolder": "director"
+      "detailFolder": "director",
+      "content_zh": [
+        {
+          "type": "text",
+          "text": "主导及参与多项重大活动，包括："
+        },
+        {
+          "type": "text",
+          "text": "奥运会资格系列赛·上海城市体育节系列活动\n上海国际电影节开闭幕式和红毯仪式\n中国品牌日晚会\n东方卫视春晚\n蓝天下的挚爱慈善晚会及全天大直播\n上海国庆招待会\n上海旅游节启动仪式\n上海市老年节文艺晚会\n上海“五五购物节”启动仪式和国际消费中心城市论坛\n东方明珠新年登高仪式，等"
+        },
+        {
+          "type": "heading",
+          "text": "主要奖项"
+        },
+        {
+          "type": "text",
+          "text": "第29届亚洲电视大奖最佳娱乐节目\n中国电视艺术家协会最佳作品奖"
+        }
+      ],
+      "content_en": [
+        {
+          "type": "text",
+          "text": "Led and participated in numerous major events, including:"
+        },
+        {
+          "type": "text",
+          "text": "Urban Festival of the Olympic Qualifier Series\nShanghai International Film Festival Opening & Closing Ceremonies and Red Carpet\nChina Brand Day Gala\nDragon TV Spring Festival Gala\n\"Greatest Love under the Sky\" Charity Gala and All-Day Live Broadcast\nShanghai National Day Reception\nShanghai Tourism Festival Opening Ceremony\nShanghai Senior Citizens' Day Gala\nLaunch Ceremony of Shanghai \"55 Shopping Festival\" and International Consumption Centre City Forum\nOriental Pearl New Year's Day climbing event, etc."
+        },
+        {
+          "type": "heading",
+          "text": "Professional Awards"
+        },
+        {
+          "type": "text",
+          "text": "29th Asian Television Awards of Best Entertainment\nBest Work Award presented by the China Television Artists Association"
+        }
+      ]
     },
     {
       "title_en": "Project Manager at Dragon TV",
       "title_zh": "东方卫视中心 项目经理",
       "period": "2019-2022",
       "id": "project-manager",
-      "detailFolder": "project-manager"
+      "detailFolder": "project-manager",
+      "content_zh": [
+        {
+          "type": "text",
+          "text": "曾任东方卫视产业拓展中心项目经理，统筹商务合作、线下活动、艺人经纪等板块。"
+        }
+      ],
+      "content_en": [
+        {
+          "type": "text",
+          "text": "Former Project Manager at Dragon TV Industrial Expansion Center, overseeing business development, on-site events, and talent management."
+        }
+      ]
     },
     {
       "title_en": "Director of Kevin's Hour",
       "title_zh": "《可凡倾听》编导",
       "period": "2019-2022",
       "id": "kevin-hour",
-      "detailFolder": "kevin-hour"
+      "detailFolder": "kevin-hour",
+      "content_zh": [
+        {
+          "type": "text",
+          "text": "涵盖政治、文艺、学术、娱乐等各界代表，如：陈元（陈云长子，原国家开发银行行长）、陈伟力（陈云之女，中国残疾人福利基金会理事）、王晓鹰（中国国家话剧院原常务副院长）、叶锦添（奥斯卡最佳艺术指导）、于和伟（演员）、吴玉芳（演员）、谭松韵（演员）、李若彤（演员）、马伯庸（作家）、吕燕（模特）、李诞（脱口秀艺人）、邓紫棋（歌手）等。"
+        }
+      ],
+      "content_en": [
+        {
+          "type": "text",
+          "text": "Featuring interviews with representatives from politics, culture, academia, and entertainment, including Chen Yuan, Chen Weili, Wang Xiaoying, Tim Yip (Oscar-winning Art Director), Yu Hewei, Wu Yufang, Tan Songyun, Carman Lee, Ma Boyong, Lv Yan, Li Dan, G.E.M., etc."
+        }
+      ]
     },
     {
       "title_en": "Journalist and Editor",
       "title_zh": "《娱乐星天地》《新娱乐在线》 记者/编辑",
       "period": "2013-2019",
       "id": "journalist",
-      "detailFolder": "journalist"
+      "detailFolder": "journalist",
+      "content_zh": [
+        {
+          "type": "text",
+          "text": "《娱乐星天地》《新娱乐在线》记者、编辑，累计发布千余条资讯报道；\n2018、2019年连续荣获上海国际艺术节最佳专题策划奖。"
+        }
+      ],
+      "content_en": [
+        {
+          "type": "text",
+          "text": "\"Star Space\" and \"New Entertainment Online\", contributing over 1,000 news reports.\nAwarded the Best Feature Planning Award at the Shanghai International Arts Festival in 2018 and 2019."
+        }
+      ]
     }
   ],
   "services": [
@@ -83,7 +153,6 @@
   "links": {
     "linkedin": "https://www.linkedin.com/in/luzhang",
     "github": "https://github.com/LuZhang-Clab",
-    "replit": "https://replit.com",
     "xiaohongshu": "#",
     "email": "501615927@qq.com"
   },
@@ -99,68 +168,173 @@
           "title_zh": "奥运会资格系列赛·上海 城市体育节",
           "cover": "/images/home/1.jpg",
           "imageFolder": "olympic",
-          "sections_zh": [
+          "content_zh": [
             {
-              "subtitle": "欢迎盛典",
-              "text": "活动现场星光熠熠，阵容包括王一博、张杰、黄明昊、刘逸云、刘雨昕、张尕怂、周洁琼等歌手与演员。演出获得第29届亚洲电视大奖最佳综艺节目奖。"
+              "type": "heading",
+              "text": "欢迎盛典"
             },
             {
-              "subtitle": "“有意思”非遗市集",
-              "text": "一场汇聚了好逛的市集、好看的表演、好炫的打卡装置、好牛的非遗传人以及好玩的游戏的非遗主题派对。"
+              "type": "text",
+              "text": "活动现场星光熠熠，阵容包括王一博、张杰、黄明昊、刘逸云、刘雨昕、张尕怂、周洁琼等歌手与演员。他们与来自小轮车、滑板、街舞和攀岩项目的运动员同台演出，同时还有京剧、舞狮、皮影戏等中国传统艺术表演者共同参与。整场活动传递出时尚、活力、欢庆与青春洋溢的现场氛围。\n演出获得第29届亚洲电视大奖最佳综艺节目奖。"
             },
             {
-              "subtitle": "悦动巅峰派对",
-              "text": "中文、英文、法语和上海话歌词交织的动感融合，电子节拍、嘻哈、摇滚、民谣旋律与戏曲元素碰撞交织。"
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.jpg",
+                "3.jpg",
+                "4.jpg",
+                "5.jpg",
+                "6.jpg"
+              ]
             },
             {
-              "subtitle": "心无限·时尚之旅",
-              "text": "以绿色生活、可持续性和环保意识为核心价值的时尚主题秀。"
+              "type": "heading",
+              "text": "“有意思”非遗市集"
             },
             {
-              "subtitle": "炫动青春斗Show场",
-              "text": "霹雳舞、甩手舞、disco……一场融合了多种细分舞种的街舞年代秀battle比赛。"
+              "type": "text",
+              "text": "一场汇聚了好逛的市集、好看的表演、好炫的打卡装置、好牛的非遗传人以及好玩的游戏的非遗主题派对，向人们传递文化、健康与生活的理念。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "7.JPG",
+                "8.jpg",
+                "9.jpg",
+                "10.JPG",
+                "11.JPG",
+                "12.JPG",
+                "13.JPG"
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "悦动巅峰派对"
+            },
+            {
+              "type": "text",
+              "text": "一场由中文、英文、法语和上海话歌词交织而成的动感融合，电子节拍、嘻哈、摇滚、民谣旋律与戏曲元素在此碰撞交织。共同礼赞上海这座城市的无限活力。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "14.jpg",
+                "15.jpg"
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "心无限·时尚之旅"
+            },
+            {
+              "type": "text",
+              "text": "以绿色生活、可持续性和环保意识为核心价值的时尚主题秀，用环保时尚演绎再生之美。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "16.jpg"
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "炫动青春斗Show场"
+            },
+            {
+              "type": "text",
+              "text": "霹雳舞、甩手舞、disco……一场融合了多种细分舞种的街舞年代秀battle比赛，燃爆现场！"
+            },
+            {
+              "type": "images",
+              "files": [
+                "17.jpg"
+              ]
             }
           ],
-          "sections_en": [
+          "content_en": [
             {
-              "subtitle": "The Opening Ceremony",
-              "text": "The event featured a star-studded lineup including Wang Yibo, Jason Zhang, and more. Won Best Entertainment at the 29th Asian Television Awards."
+              "type": "heading",
+              "text": "The Opening Ceremony"
             },
             {
-              "subtitle": "A Cultural Heritage Party",
-              "text": "A cultural heritage party gathering inviting stalls, stunning performances, and dazzling installations."
+              "type": "text",
+              "text": "The event featured a star-studded lineup, including singers and actors such as Wang Yibo, Jason Zhang, Justin Huang, Amber Liu, Liu Yuxin, Zhang Gasong, and Kyulkyung. They shared the stage with athletes from BMX, skateboarding, street dance, and sport climbing, alongside traditional Chinese performers in Peking Opera, lion dance, and shadow puppetry. The event conveyed a vibrant atmosphere of fashion, energy, celebration, and youthful spirit.\nThe performance won the Best Entertainment award at the 29th Asian Television Awards."
             },
             {
-              "subtitle": "A Music Festival",
-              "text": "A dynamic fusion of Chinese, English, French, and Shanghainese lyrics, where electronic beats, hip-hop, rock, and folk melodies collided."
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.jpg",
+                "3.jpg",
+                "4.jpg",
+                "5.jpg",
+                "6.jpg"
+              ]
             },
             {
-              "subtitle": "A Fashion-themed Performance",
-              "text": "Built around green living, sustainability, and environmental consciousness."
+              "type": "heading",
+              "text": "A Cultural Heritage Party"
             },
             {
-              "subtitle": "A Street Dance Party",
-              "text": "A street dance battle blending breaking, waacking, disco, and more."
+              "type": "text",
+              "text": "A cultural heritage party that gathers inviting stalls, stunning performances, dazzling installations, inspiring practitioners, and engaging experiences, sharing the vision of culture, health, and living."
+            },
+            {
+              "type": "images",
+              "files": [
+                "7.JPG",
+                "8.jpg",
+                "9.jpg",
+                "10.JPG",
+                "11.JPG",
+                "12.JPG",
+                "13.JPG"
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "A Music Festival"
+            },
+            {
+              "type": "text",
+              "text": "A dynamic fusion of Chinese, English, French, and Shanghainese lyrics, where electronic beats, hip-hop, rock, folk melodies, and opera elements collided and intertwined."
+            },
+            {
+              "type": "images",
+              "files": [
+                "14.jpg",
+                "15.jpg"
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "A Fashion-themed Performance"
+            },
+            {
+              "type": "text",
+              "text": "The show was built around the core values of green living, sustainability, and environmental consciousness."
+            },
+            {
+              "type": "images",
+              "files": [
+                "16.jpg"
+              ]
+            },
+            {
+              "type": "heading",
+              "text": "A Street Dance Party"
+            },
+            {
+              "type": "text",
+              "text": "A street dance era show: a battle competition blending breaking, waacking, disco, and more."
+            },
+            {
+              "type": "images",
+              "files": [
+                "17.jpg"
+              ]
             }
-          ],
-          "images": [
-            "/images/projects/olympic/1.jpg",
-            "/images/projects/olympic/10.JPG",
-            "/images/projects/olympic/11.JPG",
-            "/images/projects/olympic/12.JPG",
-            "/images/projects/olympic/13.JPG",
-            "/images/projects/olympic/14.jpg",
-            "/images/projects/olympic/15.jpg",
-            "/images/projects/olympic/16.jpg",
-            "/images/projects/olympic/17.jpg",
-            "/images/projects/olympic/2.jpg",
-            "/images/projects/olympic/3.jpg",
-            "/images/projects/olympic/4.jpg",
-            "/images/projects/olympic/5.jpg",
-            "/images/projects/olympic/6.jpg",
-            "/images/projects/olympic/7.JPG",
-            "/images/projects/olympic/8.jpg",
-            "/images/projects/olympic/9.jpg"
           ]
         },
         {
@@ -169,13 +343,43 @@
           "title_zh": "上海国际电影节开、闭幕式及红毯仪式",
           "cover": "/images/home/2.jpg",
           "imageFolder": "film-festival",
-          "sections_zh": [],
-          "sections_en": [],
-          "link": "https://www.siff.com",
-          "images": [
-            "/images/projects/film-festival/1.jpg",
-            "/images/projects/film-festival/2.jpg",
-            "/images/projects/film-festival/3.jpg"
+          "content_zh": [
+            {
+              "type": "text",
+              "text": "上海国际电影节开、闭幕式及红毯仪式"
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.jpg",
+                "3.jpg"
+              ]
+            },
+            {
+              "type": "link",
+              "text": "上海国际电影节",
+              "url": "https://www.siff.com"
+            }
+          ],
+          "content_en": [
+            {
+              "type": "text",
+              "text": "Shanghai International Film Festival Opening and Closing Ceremonies and Red Carpet"
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.jpg",
+                "3.jpg"
+              ]
+            },
+            {
+              "type": "link",
+              "text": "Shanghai International Film Festival",
+              "url": "https://www.siff.com"
+            }
           ]
         },
         {
@@ -184,15 +388,65 @@
           "title_zh": "中国品牌日晚会",
           "cover": "/images/home/3.jpg",
           "imageFolder": "brand-day",
-          "sections_zh": [],
-          "sections_en": [],
-          "images": [
-            "/images/projects/brand-day/1.jpg",
-            "/images/projects/brand-day/2.jpg",
-            "/images/projects/brand-day/3.jpg",
-            "/images/projects/brand-day/4.jpg",
-            "/images/projects/brand-day/5.jpg"
+          "content_zh": [
+            {
+              "type": "text",
+              "text": "中国品牌日晚会"
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.jpg",
+                "3.jpg",
+                "4.jpg",
+                "5.jpg"
+              ]
+            }
+          ],
+          "content_en": [
+            {
+              "type": "text",
+              "text": "China Brand Day Gala"
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.jpg",
+                "3.jpg",
+                "4.jpg",
+                "5.jpg"
+              ]
+            }
           ]
+        },
+        {
+          "id": "national-day",
+          "title_en": "Shanghai National Day Reception",
+          "title_zh": "上海国庆招待会",
+          "cover": "/images/home/5.jpg",
+          "imageFolder": "",
+          "content_zh": [],
+          "content_en": []
+        },
+        {
+          "id": "spring-gala",
+          "title_en": "Dragon TV Spring Festival Gala",
+          "title_zh": "东方卫视春晚",
+          "cover": "/images/home/6.jpg",
+          "imageFolder": "",
+          "content_zh": [],
+          "content_en": []
+        },
+        {
+          "id": "charity-gala",
+          "title_en": "Greatest Love under the Sky Charity Gala",
+          "title_zh": "蓝天下的挚爱慈善晚会及全天大直播",
+          "cover": "/images/home/7.jpg",
+          "imageFolder": "",
+          "content_zh": [],
+          "content_en": []
         }
       ]
     },
@@ -207,20 +461,47 @@
           "title_zh": "交互艺术装置《共鸣星域》",
           "cover": "/images/home/14.jpg",
           "imageFolder": "resonance",
-          "sections_zh": [
+          "content_zh": [
             {
-              "subtitle": "",
-              "text": "【入选上海Future Lab 2025展览和获邀迪拜Prototype for Humanity2026参展】\n情感化实时交互艺术装置：通过计算机视觉识别用户表情，触发实时生成的视听内容反馈。"
+              "type": "text",
+              "text": "【入选上海Future Lab 2025展览和获邀迪拜Prototype for Humanity2026参展】"
+            },
+            {
+              "type": "text",
+              "text": "情感化实时交互艺术装置：通过计算机视觉识别用户表情，触发实时生成的视听内容反馈，构建一个“情感感知—内容生成”的闭环交互系统。该项目是一个探索艺术体验个性化与情绪响应式叙事的技术原型，打造具有情感深度的沉浸式艺术装置或展览互动环节。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg"
+              ]
+            },
+            {
+              "type": "link",
+              "text": "相关链接",
+              "url": "https://drive.google.com/file/d/1eC3QtkNbqGQim_PPsh-YOO33SevPLEcl/view?usp=sharing"
             }
           ],
-          "sections_en": [
+          "content_en": [
             {
-              "subtitle": "",
-              "text": "[Selected for Future Lab 2025 Exhibition in Shanghai and Invited to Exhibit at Prototype for Humanity 2026 in Dubai]\nAn AI-driven project where two participants each control a drifting star on screen."
+              "type": "text",
+              "text": "[Selected for Future Lab 2025 Exhibition in Shanghai and Invited to Exhibit at Prototype for Humanity 2026 in Dubai]"
+            },
+            {
+              "type": "text",
+              "text": "An AI-driven project where two participants each control a drifting star on screen.\nWhen they smile together, their stars resonate — triggering a burst of glowing particles and sound.\nThe experience fosters positive human connection and reminds us to cherish the small, yet meaningful, moments of encounter."
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg"
+              ]
+            },
+            {
+              "type": "link",
+              "text": "Related Link",
+              "url": "https://drive.google.com/file/d/1eC3QtkNbqGQim_PPsh-YOO33SevPLEcl/view?usp=sharing"
             }
-          ],
-          "images": [
-            "/images/projects/resonance/1.jpg"
           ]
         },
         {
@@ -229,26 +510,41 @@
           "title_zh": "交互艺术装置《夜的颂歌》",
           "cover": "/images/home/8.jpg",
           "imageFolder": "night-ode",
-          "sections_zh": [
+          "content_zh": [
             {
-              "subtitle": "",
-              "text": "沉浸式意境空间交互装置：通过将参与者物理动作实时映射为虚拟星空的位移，创造“星空随动”的沉浸体验。作品在纽约进行了展览。"
+              "type": "text",
+              "text": "沉浸式意境空间交互装置：通过将参与者物理动作实时映射为虚拟星空的位移，创造“星空随动”的沉浸体验。此装置作品将抽象意境转化为线下可感知、可互动的实体体验，展示了如何通过软硬件集成与交互设计，将叙事与情感在物理空间中具象化，适用于艺术展览、商业空间氛围打造等领域。作品在纽约进行了展览。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.jpg",
+                "3.jpg",
+                "4.jpg",
+                "5.jpg",
+                "6.jpg",
+                "7.jpg"
+              ]
             }
           ],
-          "sections_en": [
+          "content_en": [
             {
-              "subtitle": "",
-              "text": "Participants enter the installation space and put on interactive glasses; as they move, the stars above shimmer and follow the direction of their gaze. Exhibited in New York."
+              "type": "text",
+              "text": "Inspired by the poet Haizi's line: \"The sky has nothing — why does it comfort me?\"\nThis project is created through both software and hardware programming.\nParticipants enter the installation space and put on interactive glasses; as they move, the stars above shimmer and follow the direction of their gaze. The work was exhibited in New York."
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.jpg",
+                "3.jpg",
+                "4.jpg",
+                "5.jpg",
+                "6.jpg",
+                "7.jpg"
+              ]
             }
-          ],
-          "images": [
-            "/images/projects/night-ode/1.jpg",
-            "/images/projects/night-ode/2.jpg",
-            "/images/projects/night-ode/3.jpg",
-            "/images/projects/night-ode/4.jpg",
-            "/images/projects/night-ode/5.jpg",
-            "/images/projects/night-ode/6.jpg",
-            "/images/projects/night-ode/7.jpg"
           ]
         },
         {
@@ -257,44 +553,74 @@
           "title_zh": "网页交互游戏《科学的朋友》",
           "cover": "/images/home/9.png",
           "imageFolder": "science-friend",
-          "sections_zh": [
+          "content_zh": [
             {
-              "subtitle": "",
-              "text": "内容数据化与人格化推荐系统：通过构建虚构人物的多维度标签体系并实现用户匹配。"
+              "type": "text",
+              "text": "内容数据化与人格化推荐系统：通过构建虚构人物的多维度标签体系并实现用户匹配，实践了将复杂内容深度解构为标准化数据标签的方法。该项目探索了基于内容DNA的精准推荐与社群连接模式。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.png",
+                "2.png"
+              ]
+            },
+            {
+              "type": "link",
+              "text": "Scientific Friend",
+              "url": "https://scientific-friend.glitch.me/"
             }
           ],
-          "sections_en": [
+          "content_en": [
             {
-              "subtitle": "",
-              "text": "A platform that helps the mad scientist find virtual friends through multi-dimensional tagging."
+              "type": "text",
+              "text": "This is a platform that helps the mad scientist find a social networking site for virtual friends. On this site, characters like Mario, the Little Prince, and Doraemon are ranked based on dimensions such as IQ, movement speed, strength, and age."
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.png",
+                "2.png"
+              ]
+            },
+            {
+              "type": "link",
+              "text": "Scientific Friend",
+              "url": "https://scientific-friend.glitch.me/"
             }
-          ],
-          "images": [
-            "/images/projects/science-friend/1.png",
-            "/images/projects/science-friend/2.png"
           ]
         },
         {
           "id": "puzzle",
           "title_en": "Interactive Web Game: Puzzles",
           "title_zh": "网页交互游戏《拼图》",
-          "cover": "/images/home/10.png",
+          "cover": "/images/home/10.jpg",
           "imageFolder": "puzzle",
-          "sections_zh": [
+          "content_zh": [
             {
-              "subtitle": "",
-              "text": "在线多人拼图游戏，需要团队合作，在限定时间内完成拼图。"
+              "type": "text",
+              "text": "这是一款在线多人拼图游戏，需要团队合作，在限定时间内完成拼图。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.png"
+              ]
             }
           ],
-          "sections_en": [
+          "content_en": [
             {
-              "subtitle": "",
-              "text": "An online multiplayer jigsaw puzzle game that encourages teamwork within a set time limit."
+              "type": "text",
+              "text": "An online multiplayer jigsaw puzzle game that encourages teamwork to complete puzzles within a set time limit."
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.png"
+              ]
             }
-          ],
-          "images": [
-            "/images/projects/puzzle/1.jpg.jpg",
-            "/images/projects/puzzle/2.png"
           ]
         },
         {
@@ -303,22 +629,33 @@
           "title_zh": "网页交互游戏《征服者》",
           "cover": "/images/home/11.png",
           "imageFolder": "conqueror",
-          "sections_zh": [
+          "content_zh": [
             {
-              "subtitle": "",
-              "text": "叙事游戏化与轻量化产品设计：基于卡牌历史人物的策略游戏。"
+              "type": "text",
+              "text": "叙事游戏化与轻量化产品设计：设计基于卡牌历史人物的策略游戏，将厚重的历史叙事与核心冲突转化为轻量化、高参与度的游戏化产品。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.png",
+                "2.png",
+                "3.png"
+              ]
             }
           ],
-          "sections_en": [
+          "content_en": [
             {
-              "subtitle": "",
-              "text": "A Monopoly-inspired territory battle game using poker face cards."
+              "type": "text",
+              "text": "Give 'Conquer Cities' skills to poker's face cards, turning the game into a Monopoly-inspired territory battle where the player who occupies the most land wins."
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.png",
+                "2.png",
+                "3.png"
+              ]
             }
-          ],
-          "images": [
-            "/images/projects/conqueror/1.png",
-            "/images/projects/conqueror/2.png",
-            "/images/projects/conqueror/3.png"
           ]
         },
         {
@@ -327,20 +664,29 @@
           "title_zh": "网页交互游戏《词宝》",
           "cover": "/images/home/12.jpeg",
           "imageFolder": "cibaoo",
-          "sections_zh": [
+          "content_zh": [
             {
-              "subtitle": "",
-              "text": "场景化交互学习产品，结合图像识别技术的双语学习工具。"
+              "type": "text",
+              "text": "场景化交互学习产品，开发结合图像识别技术的双语学习工具，将传统知识内容重新封装为场景化、交互式的移动端产品。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpeg"
+              ]
             }
           ],
-          "sections_en": [
+          "content_en": [
             {
-              "subtitle": "",
-              "text": "A bilingual learning tool developed with image recognition technology."
+              "type": "text",
+              "text": "Image-based Interactive Learning Product — a bilingual learning tool developed with image recognition technology."
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpeg"
+              ]
             }
-          ],
-          "images": [
-            "/images/projects/cibaoo/1.jpeg"
           ]
         }
       ]
@@ -351,29 +697,68 @@
       "name_zh": "创意实验",
       "projects": [
         {
+          "id": "rodin",
+          "title_en": "Centre d'Art Rodin Shanghai: Dramatic Sculpture & Physical Theatre",
+          "title_zh": "上海罗丹艺术中心 戏剧雕塑&身体剧场",
+          "cover": "/images/home/15.jpg",
+          "imageFolder": "",
+          "content_zh": [],
+          "content_en": []
+        },
+        {
           "id": "nature",
           "title_en": "Art Installation: Under the Nature",
           "title_zh": "艺术装置《自然之下》",
           "cover": "/images/home/16.jpg",
           "imageFolder": "nature",
-          "sections_zh": [
+          "content_zh": [
             {
-              "subtitle": "",
-              "text": "人们不断向自然索取，使得代表自然的大树变得不堪重负。该项目在柏林展出。"
+              "type": "text",
+              "text": "人们不断向自然索取，表达着这样那样的欲望，同时也使得代表自然的大树变得不堪重负。我们渴望更好的生活，也需要意识到，这份生存所需，对自然而言，意味着怎样的负担。这正呼应了“公民生态”（Civic Ecologies）的主题——在发展与责任之间，重新思考我们与自然共生的方式。\n所以名字命名为《自然之下》。\n该项目在柏林展出。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.jpg",
+                "3.jpg",
+                "4.jpg"
+              ]
             }
           ],
-          "sections_en": [
+          "content_en": [
             {
-              "subtitle": "",
-              "text": "Humanity constantly takes from nature, burdening the tree that represents nature. Exhibited in Berlin."
+              "type": "text",
+              "text": "Humanity constantly takes from nature, expressing one desire after another, burdening the tree that represents nature until it can no longer bear the weight. This echoes the theme of \"Civic Ecologies\" — rethinking the way we coexist with nature.\nThus, the piece is titled Under the Nature.\nThe project was exhibited in Berlin."
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.jpg",
+                "3.jpg",
+                "4.jpg"
+              ]
             }
-          ],
-          "images": [
-            "/images/projects/nature/1.jpg",
-            "/images/projects/nature/2.jpg",
-            "/images/projects/nature/3.jpg",
-            "/images/projects/nature/4.jpg"
           ]
+        },
+        {
+          "id": "onsite-event",
+          "title_en": "Onsite Event",
+          "title_zh": "线下活动",
+          "cover": "/images/home/17.jpg",
+          "imageFolder": "",
+          "content_zh": [],
+          "content_en": []
+        },
+        {
+          "id": "live-streaming",
+          "title_en": "Online Cultural, Entertainment, and Business Live Streaming",
+          "title_zh": "线上文化、娱乐、商务直播",
+          "cover": "/images/home/18.jpg",
+          "imageFolder": "",
+          "content_zh": [],
+          "content_en": []
         }
       ]
     },
@@ -388,23 +773,52 @@
           "title_zh": "人物叙事",
           "cover": "/images/home/4.jpg",
           "imageFolder": "narrative",
-          "sections_zh": [
+          "content_zh": [
             {
-              "subtitle": "",
-              "text": "涵盖政治、文艺、学术、娱乐等各界代表，如：陈元、叶锦添、于和伟、谭松韵、马伯庸、邓紫棋等。"
+              "type": "text",
+              "text": "涵盖政治、文艺、学术、娱乐等各界代表，如：陈元（陈云长子，原国家开发银行行长）、陈伟力（陈云之女，中国残疾人福利基金会理事）、王晓鹰（中国国家话剧院原常务副院长）、叶锦添（奥斯卡最佳艺术指导）、于和伟（演员）、吴玉芳（演员）、谭松韵（演员）、李若彤（演员）、马伯庸（作家）、吕燕（模特）、李诞（脱口秀艺人）、邓紫棋（歌手）等。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.jpg",
+                "3.jpg"
+              ]
             }
           ],
-          "sections_en": [
+          "content_en": [
             {
-              "subtitle": "",
-              "text": "Featuring representatives from politics, arts, academia, entertainment including Tim Yip, Yu Hewei, Ma Boyong, G.E.M. Tang and others."
+              "type": "text",
+              "text": "Featuring representatives from politics, arts, academia, entertainment, and other fields, including Chen Yuan, Chen Weili, Wang Xiaoying, Tim Yip (Oscar-winning Art Director), Yu Hewei, Wu Yufang, Tan Songyun, Carman Lee, Ma Boyong, Lyu Yan, Li Dan, G.E.M. Tang, and others."
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.jpg",
+                "3.jpg"
+              ]
             }
-          ],
-          "images": [
-            "/images/projects/narrative/1.jpg",
-            "/images/projects/narrative/2.jpg",
-            "/images/projects/narrative/3.jpg"
           ]
+        },
+        {
+          "id": "virtual-production",
+          "title_en": "Virtual Production",
+          "title_zh": "虚拟制片",
+          "cover": "/images/home/19.jpg",
+          "imageFolder": "",
+          "content_zh": [],
+          "content_en": []
+        },
+        {
+          "id": "news-reporting",
+          "title_en": "News Reporting",
+          "title_zh": "资讯报道",
+          "cover": "/images/home/20.jpg",
+          "imageFolder": "",
+          "content_zh": [],
+          "content_en": []
         },
         {
           "id": "instaknow",
@@ -412,25 +826,39 @@
           "title_zh": "AI视频《Instaknow》",
           "cover": "/images/home/13.jpg",
           "imageFolder": "instaknow",
-          "sections_zh": [
+          "content_zh": [
             {
-              "subtitle": "",
-              "text": "多模态AIGC短视频生成管线：综合运用Suno、PixVerse等模型，完成端到端科幻短片创作。"
+              "type": "text",
+              "text": "多模态AIGC短视频生成管线：综合运用Suno（音乐生成）、PixVerse（视频生成）等各类音视频生成模型，完成从文本剧本到动态成片的端到端科幻短片创作。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.jpg",
+                "3.jpg",
+                "4.jpg",
+                "5.jpg",
+                "6.jpg"
+              ]
             }
           ],
-          "sections_en": [
+          "content_en": [
             {
-              "subtitle": "",
-              "text": "Multimodal AIGC Short Video Generation Pipeline using Suno and PixVerse for end-to-end sci-fi short film creation."
+              "type": "text",
+              "text": "Multimodal AIGC Short Video Generation Pipeline: A comprehensive application of various audio and video generation models including Suno and PixVerse to complete an end-to-end science fiction short film creation."
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg",
+                "2.jpg",
+                "3.jpg",
+                "4.jpg",
+                "5.jpg",
+                "6.jpg"
+              ]
             }
-          ],
-          "images": [
-            "/images/projects/instaknow/1.jpg.jpg",
-            "/images/projects/instaknow/2.jpg",
-            "/images/projects/instaknow/3.jpg.jpg",
-            "/images/projects/instaknow/4.jpg.jpg",
-            "/images/projects/instaknow/5.jpg",
-            "/images/projects/instaknow/6.jpg"
           ]
         },
         {
@@ -439,64 +867,783 @@
           "title_zh": "AI视觉设计《重构五十日》",
           "cover": "/images/home/21.jpg",
           "imageFolder": "50days",
-          "sections_zh": [
+          "content_zh": [
             {
-              "subtitle": "",
-              "text": "连续50天，使用AI绘图工具，以全新视角创作戏剧和影视中的经典人物造型。"
+              "type": "text",
+              "text": "连续50天，使用AI绘图工具，以全新的视角去创作戏剧和影视中的经典人物造型。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "索尔的新工作：一名维修高压线的电工。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "2.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "隆重介绍「浩克搬家公司」——世界上最适合帮你搬家的人。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "3.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "抵达迅速、定位精准，自带保温和加热系统，食物恒温，还能变形装载任何尺寸的货物。钢铁侠简直是为送外卖而生的。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "4.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "蝙蝠侠再就业——魔术师。表演魔术，变出一只活鸽子。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "5.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "蜘蛛侠，在互联网上织网。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "6.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "在蒂芙尼吃晚餐？"
+            },
+            {
+              "type": "images",
+              "files": [
+                "7.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "肯，一个精致、热爱时尚的男孩。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "8.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "一个是街头涂鸦风，另一个是脏脏的工业朋克风。\n「不是你的玩偶！」——芭比"
+            },
+            {
+              "type": "images",
+              "files": [
+                "9.jpg",
+                "10.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "作品灵感来自马克·罗斯科的风格，面具来自中国傩戏。红色代表忠诚。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "11.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "魅影的灵感来自中国传统水墨画。源于《歌剧魅影》，黑白与阴阳的概念映照出他性格中的矛盾。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "12.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "《指环王》中加拉德瑞尔的自然之灵版本。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "13.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "两个人为了赢得奖金，四处寻找一只鸽子。\n他们能找多久？一年、十年、二十年，还是五十年？\n《东四十条》"
+            },
+            {
+              "type": "images",
+              "files": [
+                "14.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "一个机甲艺伎。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "15.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "一个向来可靠，另一个同样可靠——只是你可能需要花点时间才能发现。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "16.jpg",
+                "17.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "弗雷德和乔治·韦斯莱，与贝拉特里克斯·莱斯特兰奇。他们都拥有从未经历过内心冲突的性格。区别在于，双子创造并分享快乐，而贝拉特里克斯以毁灭为乐。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "18.jpg",
+                "19.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "卢娜和小天狼星——行走于光影之中最明亮、最动人的灵魂。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "20.jpg",
+                "21.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "「你选错了路，汤姆。你永远不会懂得爱。」\n邓布利多与伏地魔，黑与白的对比。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "22.jpg",
+                "23.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "中国皮影戏风格的《哈利·波特》。皮影戏和电影一样，都是「光影」的艺术。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "24.jpg",
+                "25.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "「平衡就是物理学，重心——」\n「我更愿意相信它是关于相信自己……还有独角兽。」\n《老友记》"
+            },
+            {
+              "type": "images",
+              "files": [
+                "26.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "「如果我死了，你也死了，咱俩都死了……谁来打扫公寓啊？」\n《老友记》"
+            },
+            {
+              "type": "images",
+              "files": [
+                "27.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "乔伊·崔比亚尼的天堂\n《老友记》"
+            },
+            {
+              "type": "images",
+              "files": [
+                "28.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "创业基金总额：4.11 美元\n《破产姐妹》"
+            },
+            {
+              "type": "images",
+              "files": [
+                "29.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "「我在做巧克力，当然。但不是普通的巧克力——我在做梦想。」\n《旺卡》"
+            },
+            {
+              "type": "images",
+              "files": [
+                "30.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "「待在这儿。我去拿那棵植物。」\n《机器人总动员》"
+            },
+            {
+              "type": "images",
+              "files": [
+                "31.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "「你知道吗？贫穷里没有什么高尚。」\n《华尔街之狼》"
+            },
+            {
+              "type": "images",
+              "files": [
+                "32.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "「你这种人一抓一大把！」\n《推销员之死》"
+            },
+            {
+              "type": "images",
+              "files": [
+                "33.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "灵感来自《吸血鬼日记》，黑色裙子上布满血一般的红色纹路。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "34.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "摇滚版孙悟空，以中国传统剪纸风格呈现。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "35.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "一幅中国水墨画风格的艾莎肖像，融合水彩质感与冰雪元素。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "36.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "花木兰——中国北魏时期的传奇女战士。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "37.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "在格林兄弟的《灰姑娘》中，鸟儿为女主角带来金色裙子和金鞋。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "38.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "《白雪公主》的历史原型可能源于18世纪的德国。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "39.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "2025年版的程蝶衣，灵感来自《霸王别姬》。如果生在更晚的时代，他能否挣脱悲剧的命运？"
+            },
+            {
+              "type": "images",
+              "files": [
+                "40.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "行星海盗版美少女战士"
+            },
+            {
+              "type": "images",
+              "files": [
+                "41.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "秦彻——《恋与深空》中的核心角色。"
+            },
+            {
+              "type": "images",
+              "files": [
+                "42.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "《孔雀》——一个美丽的男孩，用自己孤独的方式守护着心爱的女孩。\n《剪刀手爱德华》"
+            },
+            {
+              "type": "images",
+              "files": [
+                "43.jpg",
+                "44.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "青蛇\n《白蛇传》"
+            },
+            {
+              "type": "images",
+              "files": [
+                "45.jpg"
+              ]
             }
           ],
-          "sections_en": [
+          "content_en": [
             {
-              "subtitle": "",
-              "text": "50 consecutive days of using AI drawing tools to reimagine classic character designs from theater, film, and television."
+              "type": "text",
+              "text": "50 consecutive days of using AI drawing tools to reimagine classic character designs from theater, film, and television from a fresh perspective."
+            },
+            {
+              "type": "images",
+              "files": [
+                "1.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Thor's new job: an electrician repairing high-voltage power lines."
+            },
+            {
+              "type": "images",
+              "files": [
+                "2.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Introducing Hulk Moving Express — the most qualified man in the world to help you move."
+            },
+            {
+              "type": "images",
+              "files": [
+                "3.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Speedy arrival, precise positioning, equipped with insulation and heating system. Iron Man was practically born to deliver takeout."
+            },
+            {
+              "type": "images",
+              "files": [
+                "4.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Batman re-employment — magician. Performing a magic trick, pulling out a live pigeon."
+            },
+            {
+              "type": "images",
+              "files": [
+                "5.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Spider-Man weaving his web on the internet."
+            },
+            {
+              "type": "images",
+              "files": [
+                "6.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Dinner at Tiffany's?"
+            },
+            {
+              "type": "images",
+              "files": [
+                "7.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Ken, a refined and fashion-loving boy."
+            },
+            {
+              "type": "images",
+              "files": [
+                "8.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "One is the street graffiti style, and the other is the dirty industrial punk style.\n\"Not your doll!\" — by Barbie"
+            },
+            {
+              "type": "images",
+              "files": [
+                "9.jpg",
+                "10.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Inspired by Mark Rothko. The face masks are from Chinese Nuo opera. Red represents loyalty."
+            },
+            {
+              "type": "images",
+              "files": [
+                "11.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "The Phantom is inspired by traditional Chinese ink painting. From The Phantom of the Opera."
+            },
+            {
+              "type": "images",
+              "files": [
+                "12.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "The nature spirit version of Galadriel, from The Lord of the Rings."
+            },
+            {
+              "type": "images",
+              "files": [
+                "13.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Two people searching for a pigeon in hopes of winning a prize.\nHow long can they keep searching? One year, ten years, twenty, or fifty?\nDance Still"
+            },
+            {
+              "type": "images",
+              "files": [
+                "14.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "It's a mech-geisha."
+            },
+            {
+              "type": "images",
+              "files": [
+                "15.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "One who has always been reliable, and another who is just as reliable."
+            },
+            {
+              "type": "images",
+              "files": [
+                "16.jpg",
+                "17.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Fred and George Weasley, and Bellatrix Lestrange. The twins create and share joy; Bellatrix finds pleasure in destruction."
+            },
+            {
+              "type": "images",
+              "files": [
+                "18.jpg",
+                "19.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Luna and Sirius — among the most luminous souls to walk in shadow and light."
+            },
+            {
+              "type": "images",
+              "files": [
+                "20.jpg",
+                "21.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Dumbledore and Voldemort, the contrast between black and white."
+            },
+            {
+              "type": "images",
+              "files": [
+                "22.jpg",
+                "23.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Harry Potter in the style of Chinese shadow puppetry. Shadow play, like cinema, is an art of light and shadow."
+            },
+            {
+              "type": "images",
+              "files": [
+                "24.jpg",
+                "25.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "\"Balance is all about physics, center of gravity—\"\n\"I prefer to think it's about believing in yourself… and unicorns.\"\nFriends"
+            },
+            {
+              "type": "images",
+              "files": [
+                "26.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "\"If I die, and you die, and we're both dead... who's gonna clean the apartment?\"\nFriends"
+            },
+            {
+              "type": "images",
+              "files": [
+                "27.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Joey Tribbiani's Paradise\nFriends"
+            },
+            {
+              "type": "images",
+              "files": [
+                "28.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Total Entrepreneurial Fund: $4.11\n2 Broke Girls"
+            },
+            {
+              "type": "images",
+              "files": [
+                "29.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "\"I'm making chocolate, of course. But not just any chocolate—I'm making dreams.\"\nWonka"
+            },
+            {
+              "type": "images",
+              "files": [
+                "30.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "\"Stay here. I'll get the plant.\"\nWALL-E"
+            },
+            {
+              "type": "images",
+              "files": [
+                "31.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "\"There's no nobility in poverty.\"\nThe Wolf of Wall Street"
+            },
+            {
+              "type": "images",
+              "files": [
+                "32.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "\"You're a dime a dozen!\"\nDeath of a Salesman"
+            },
+            {
+              "type": "images",
+              "files": [
+                "33.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Inspired by The Vampire Diaries, with a black dress veined with red like blood."
+            },
+            {
+              "type": "images",
+              "files": [
+                "34.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "A rock and roll version of Monkey King in traditional Chinese paper-cutting style."
+            },
+            {
+              "type": "images",
+              "files": [
+                "35.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "A Chinese ink painting portrait of Elsa, blending watercolor textures with icy elements."
+            },
+            {
+              "type": "images",
+              "files": [
+                "36.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Mulan — A legendary female warrior of the Northern Wei Dynasty."
+            },
+            {
+              "type": "images",
+              "files": [
+                "37.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "In the Grimm brothers' Cinderella, birds bring a dazzling golden dress and real golden shoes."
+            },
+            {
+              "type": "images",
+              "files": [
+                "38.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "The historical prototype of Snow White may have originated in 18th-century Germany."
+            },
+            {
+              "type": "images",
+              "files": [
+                "39.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "2025 version of Cheng Dieyi, inspired by Farewell My Concubine."
+            },
+            {
+              "type": "images",
+              "files": [
+                "40.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Planet Pirate Version of Sailor Moon"
+            },
+            {
+              "type": "images",
+              "files": [
+                "41.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Sylus — from Love and Deepspace."
+            },
+            {
+              "type": "images",
+              "files": [
+                "42.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "The Peacock / Edward Scissorhands — guarding the girl he loves in his own lonely way."
+            },
+            {
+              "type": "images",
+              "files": [
+                "43.jpg",
+                "44.jpg"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Green Snake / The Legend of the White Snake"
+            },
+            {
+              "type": "images",
+              "files": [
+                "45.jpg"
+              ]
             }
-          ],
-          "images": [
-            "/images/projects/50days/1.jpg",
-            "/images/projects/50days/10.jpg",
-            "/images/projects/50days/11.jpg",
-            "/images/projects/50days/12.jpg",
-            "/images/projects/50days/13.jpg",
-            "/images/projects/50days/14.jpg",
-            "/images/projects/50days/15.jpg",
-            "/images/projects/50days/16.jpg",
-            "/images/projects/50days/17.jpg",
-            "/images/projects/50days/18.jpg",
-            "/images/projects/50days/19.jpg",
-            "/images/projects/50days/2.jpg",
-            "/images/projects/50days/20.jpg",
-            "/images/projects/50days/21.jpg",
-            "/images/projects/50days/22.jpg",
-            "/images/projects/50days/23.jpg",
-            "/images/projects/50days/24.jpg",
-            "/images/projects/50days/25.jpg",
-            "/images/projects/50days/26.jpg",
-            "/images/projects/50days/27.jpg",
-            "/images/projects/50days/28.jpg",
-            "/images/projects/50days/29.jpg",
-            "/images/projects/50days/3.jpg",
-            "/images/projects/50days/30.jpg",
-            "/images/projects/50days/31.jpg",
-            "/images/projects/50days/32.jpg",
-            "/images/projects/50days/33.jpg",
-            "/images/projects/50days/34.jpg",
-            "/images/projects/50days/35.jpg",
-            "/images/projects/50days/36.jpg",
-            "/images/projects/50days/37.jpg",
-            "/images/projects/50days/38.jpg",
-            "/images/projects/50days/39.jpg",
-            "/images/projects/50days/4.jpg",
-            "/images/projects/50days/40.jpg",
-            "/images/projects/50days/41.jpg",
-            "/images/projects/50days/42.jpg",
-            "/images/projects/50days/43.jpg",
-            "/images/projects/50days/44.jpg",
-            "/images/projects/50days/45.jpg",
-            "/images/projects/50days/5.jpg",
-            "/images/projects/50days/6.jpg",
-            "/images/projects/50days/7.jpg",
-            "/images/projects/50days/8.jpg",
-            "/images/projects/50days/9.jpg"
           ]
         }
       ]

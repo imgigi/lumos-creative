@@ -340,8 +340,8 @@ function renderProjectCard(container, proj, ci, pi) {
     </div>
     <div class="form-group"><label>外部链接 (可选)</label><input type="text" class="p-link" data-ci="${ci}" data-pi="${pi}" value="${esc(proj.link)}"></div>
     <div class="row">
-      <div class="form-group"><label>描述 (中文)</label><textarea class="p-szh" data-ci="${ci}" data-pi="${pi}">${sectionsToText(proj.sections_zh)}</textarea><div class="hint">多段用空行分隔；小标题用"标题::内容"格式</div></div>
-      <div class="form-group"><label>描述 (英文)</label><textarea class="p-sen" data-ci="${ci}" data-pi="${pi}">${sectionsToText(proj.sections_en)}</textarea></div>
+      <div class="form-group"><label>详情内容 (中文)</label><textarea class="p-czh" data-ci="${ci}" data-pi="${pi}" style="min-height:160px">${blocksToText(proj.content_zh)}</textarea><div class="hint">格式: ## 标题 / 普通段落 / [img: 1.jpg, 2.jpg] / [link: 文字 | URL]，用空行分隔</div></div>
+      <div class="form-group"><label>详情内容 (英文)</label><textarea class="p-cen" data-ci="${ci}" data-pi="${pi}" style="min-height:160px">${blocksToText(proj.content_en)}</textarea></div>
     </div>
     <!-- Images -->
     <label>项目图片 <span style="font-weight:400;text-transform:none;font-style:italic">（点击图片设为封面，悬浮右上角 × 删除）</span></label>
@@ -437,26 +437,57 @@ function handleDrop(e, ci, pi) {
   if (e.dataTransfer.files.length) uploadProjectImgs(e.dataTransfer.files, ci, pi);
 }
 
-// ========== Sections helpers ==========
+// ========== Content blocks helpers ==========
+// Serialize content blocks to editable text format:
+//   ## Heading
+//   Paragraph text
+//   [img: 1.jpg, 2.jpg]
+//   [link: Link Text | https://url.com]
+function blocksToText(blocks) {
+  if (!blocks || !blocks.length) return '';
+  return blocks.map(b => {
+    switch (b.type) {
+      case 'heading': return '## ' + b.text;
+      case 'text': return b.text;
+      case 'images': return '[img: ' + (b.files || []).join(', ') + ']';
+      case 'link': return '[link: ' + b.text + ' | ' + b.url + ']';
+      default: return b.text || '';
+    }
+  }).join('\n\n');
+}
+
+// Parse text back to content blocks
+function textToBlocks(text) {
+  if (!text.trim()) return [];
+  return text.split(/\n\s*\n/).map(chunk => {
+    chunk = chunk.trim();
+    if (!chunk) return null;
+    // Heading: ## text
+    if (chunk.startsWith('## ')) {
+      return { type: 'heading', text: chunk.slice(3).trim() };
+    }
+    // Images: [img: file1.jpg, file2.jpg]
+    const imgMatch = chunk.match(/^\[img:\s*(.+)\]$/);
+    if (imgMatch) {
+      return { type: 'images', files: imgMatch[1].split(',').map(f => f.trim()).filter(Boolean) };
+    }
+    // Link: [link: text | url]
+    const linkMatch = chunk.match(/^\[link:\s*(.+?)\s*\|\s*(.+)\]$/);
+    if (linkMatch) {
+      return { type: 'link', text: linkMatch[1].trim(), url: linkMatch[2].trim() };
+    }
+    // Default: text paragraph
+    return { type: 'text', text: chunk };
+  }).filter(Boolean);
+}
+
+// Legacy compatibility: convert old sections to content blocks
 function sectionsToText(sections) {
   if (!sections || !sections.length) return '';
   return sections.map(s => {
     if (s.subtitle) return s.subtitle + '::' + s.text;
     return s.text;
   }).join('\n\n');
-}
-
-function textToSections(text) {
-  if (!text.trim()) return [];
-  return text.split(/\n\s*\n/).map(block => {
-    block = block.trim();
-    if (!block) return null;
-    if (block.includes('::')) {
-      const idx = block.indexOf('::');
-      return { subtitle: block.slice(0, idx).trim(), text: block.slice(idx + 2).trim() };
-    }
-    return { subtitle: '', text: block };
-  }).filter(Boolean);
 }
 
 function esc(s) { return (s || '').replace(/"/g, '&quot;'); }
@@ -468,8 +499,8 @@ function collectCategories() {
   document.querySelectorAll('.p-tzh').forEach(el => data.categories[el.dataset.ci].projects[el.dataset.pi].title_zh = el.value);
   document.querySelectorAll('.p-ten').forEach(el => data.categories[el.dataset.ci].projects[el.dataset.pi].title_en = el.value);
   document.querySelectorAll('.p-link').forEach(el => data.categories[el.dataset.ci].projects[el.dataset.pi].link = el.value);
-  document.querySelectorAll('.p-szh').forEach(el => data.categories[el.dataset.ci].projects[el.dataset.pi].sections_zh = textToSections(el.value));
-  document.querySelectorAll('.p-sen').forEach(el => data.categories[el.dataset.ci].projects[el.dataset.pi].sections_en = textToSections(el.value));
+  document.querySelectorAll('.p-czh').forEach(el => data.categories[el.dataset.ci].projects[el.dataset.pi].content_zh = textToBlocks(el.value));
+  document.querySelectorAll('.p-cen').forEach(el => data.categories[el.dataset.ci].projects[el.dataset.pi].content_en = textToBlocks(el.value));
 }
 
 function addCategory() {
@@ -481,7 +512,7 @@ function removeCat(ci) {
 }
 function addProjectTo(ci) {
   const id = 'proj-' + Date.now();
-  data.categories[ci].projects.push({ id, title_en:'', title_zh:'', cover:'', imageFolder:id, link:'', sections_zh:[], sections_en:[] });
+  data.categories[ci].projects.push({ id, title_en:'', title_zh:'', cover:'', imageFolder:id, link:'', content_zh:[], content_en:[] });
   renderCategories();
 }
 function removeProj(ci,pi) {

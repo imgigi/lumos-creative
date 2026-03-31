@@ -5,14 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LUMOS CREATIVE</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=DM+Serif+Display&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-
-<!-- Custom Cursor -->
-<div class="cursor-glow" id="cursorGlow"></div>
-<div class="cursor-trail" id="cursorTrail"></div>
 
 <!-- Splash Screen -->
 <div id="splash">
@@ -26,7 +22,10 @@
   <nav>
     <a onclick="showPage('home')" id="nav-home" class="active">Home</a>
     <a onclick="showPage('about')" id="nav-about">About</a>
-    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+    <div class="lang-group">
+      <button class="lang-btn" id="langEN" onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" id="langZH" onclick="setLang('zh')">中</button>
+    </div>
   </nav>
 </header>
 
@@ -53,25 +52,25 @@
   </div>
   <div class="about-sections">
     <!-- Work Experience -->
-    <div class="section-header">
+    <div class="section-header" onclick="toggleSection(this)">
       <span class="triangle">△</span>
-      <h2 id="workExpHeader">工作经验</h2>
+      <div class="arrow"></div>
+      <h2 id="workExpHeader">work experience</h2>
     </div>
-    <div id="workExpContainer"></div>
+    <div class="section-content" id="workExpContainer"></div>
 
     <!-- Services -->
-    <div class="section-header">
+    <div class="section-header" onclick="toggleSection(this)">
       <span class="triangle">△</span>
-      <h2 id="servicesHeader">服务</h2>
+      <div class="arrow"></div>
+      <h2 id="servicesHeader">service</h2>
     </div>
-    <div id="servicesContainer"></div>
+    <div class="section-content" id="servicesContainer"></div>
 
     <!-- Contact -->
-    <div class="section-header">
-      <span class="triangle">△</span>
-      <h2 id="contactHeader">联系方式</h2>
+    <div class="site-footer">
+      <div class="contact-links" id="contactContainer"></div>
     </div>
-    <div class="contact-links" id="contactContainer"></div>
   </div>
 </div>
 

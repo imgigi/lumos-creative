@@ -1,5 +1,8 @@
 {
   "rewrites": [
+    { "source": "/api/data", "destination": "/api/data.js" },
+    { "source": "/api/upload", "destination": "/api/upload.js" },
+    { "source": "/api/delete-image", "destination": "/api/delete-image.js" },
     { "source": "/admin", "destination": "/admin/index.html" },
     { "source": "/((?!api|images|css|js|admin|_next).*)", "destination": "/index.html" }
   ]
