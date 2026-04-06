@@ -5,10 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LUMOS CREATIVE</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+
+<!-- Custom Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
 
 <!-- Splash Screen -->
 <div id="splash">
@@ -18,9 +22,9 @@
 
 <!-- Header -->
 <header id="header">
-  <div class="logo" id="logoText" onclick="showPage('home')">LUMOS CREATIVE</div>
+  <div class="header-brand" id="logoText">LUMOS CREATIVE</div>
   <nav>
-    <a onclick="showPage('home')" id="nav-home" class="active">Home</a>
+    <a onclick="showPage('home')" id="nav-home" class="active">Projects</a>
     <a onclick="showPage('about')" id="nav-about">About</a>
     <div class="lang-group">
       <button class="lang-btn" id="langEN" onclick="setLang('en')">EN</button>
@@ -32,7 +36,7 @@
 <!-- Home Page -->
 <div class="page active" id="page-home">
   <div class="home-hero">
-    <h1 id="heroName"></h1>
+    <h1 id="heroName" onclick="showPage('about')"></h1>
     <p id="heroSubtitle"></p>
   </div>
   <div class="categories-section" id="categoriesContainer"></div>
@@ -48,24 +52,23 @@
       <div class="quote" id="aboutQuote"></div>
       <div class="bio" id="aboutBio"></div>
       <div class="education" id="aboutEdu"></div>
+      <div class="awards" id="aboutAwards"></div>
     </div>
   </div>
   <div class="about-sections">
     <!-- Work Experience -->
-    <div class="section-header" onclick="toggleSection(this)">
-      <span class="triangle">△</span>
+    <div class="section-header open" onclick="toggleSection(this)">
       <div class="arrow"></div>
-      <h2 id="workExpHeader">work experience</h2>
+      <h2 id="workExpHeader"></h2>
     </div>
-    <div class="section-content" id="workExpContainer"></div>
+    <div class="section-content open" id="workExpContainer"></div>
 
-    <!-- Services -->
-    <div class="section-header" onclick="toggleSection(this)">
-      <span class="triangle">△</span>
+    <!-- Services / Professional Field -->
+    <div class="section-header open" onclick="toggleSection(this)">
       <div class="arrow"></div>
-      <h2 id="servicesHeader">service</h2>
+      <h2 id="servicesHeader"></h2>
     </div>
-    <div class="section-content" id="servicesContainer"></div>
+    <div class="section-content open" id="servicesContainer"></div>
 
     <!-- Contact -->
     <div class="site-footer">

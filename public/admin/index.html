@@ -79,7 +79,7 @@
     <div class="tab active" onclick="switchTab('projects',this)">项目管理</div>
     <div class="tab" onclick="switchTab('about',this)">关于页面</div>
     <div class="tab" onclick="switchTab('work',this)">工作经历</div>
-    <div class="tab" onclick="switchTab('services',this)">服务</div>
+    <div class="tab" onclick="switchTab('services',this)">专业领域</div>
     <div class="tab" onclick="switchTab('site',this)">站点设置</div>
   </div>
 
@@ -162,8 +162,12 @@
         <div class="form-group"><label>GitHub</label><input type="url" id="link_github"></div>
       </div>
       <div class="row">
-        <div class="form-group"><label>Email</label><input type="email" id="link_email"></div>
+        <div class="form-group"><label>Replit</label><input type="url" id="link_replit"></div>
         <div class="form-group"><label>小红书</label><input type="url" id="link_xiaohongshu"></div>
+      </div>
+      <div class="row">
+        <div class="form-group"><label>Email</label><input type="email" id="link_email"></div>
+        <div class="form-group"><label></label></div>
       </div>
     </div>
     <div class="btn-group"><button class="btn btn-primary" onclick="saveAll()">💾 保存并发布</button></div>
@@ -194,6 +198,7 @@ function populateAll() {
   val('site_subtitle_zh', data.site.subtitle_zh);
   val('link_linkedin', data.links.linkedin);
   val('link_github', data.links.github);
+  val('link_replit', data.links.replit);
   val('link_email', data.links.email);
   val('link_xiaohongshu', data.links.xiaohongshu);
   // About
@@ -244,6 +249,7 @@ function collectAll() {
   data.site.subtitle_zh = val('site_subtitle_zh');
   data.links.linkedin = val('link_linkedin');
   data.links.github = val('link_github');
+  data.links.replit = val('link_replit');
   data.links.email = val('link_email');
   data.links.xiaohongshu = val('link_xiaohongshu');
   data.about.name_en = val('about_name_en');
