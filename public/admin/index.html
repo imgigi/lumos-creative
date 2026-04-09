@@ -275,26 +275,41 @@ function toast(msg, type) {
   setTimeout(() => el.classList.remove('show'), 2500);
 }
 
-// ========== Upload helper (Vercel Blob: PUT raw file) ==========
-async function uploadFile(file, pathPrefix) {
-  const filename = pathPrefix + '/' + Date.now() + '-' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-  const r = await fetch('/api/upload?filename=' + encodeURIComponent(filename), {
-    method: 'PUT',
-    body: file,
-  });
+// ========== Upload helper (local Express: POST multipart) ==========
+async function uploadFile(file) {
+  const formData = new FormData();
+  formData.append('image', file);
+  const r = await fetch('/api/upload', { method: 'POST', body: formData });
+  if (!r.ok) throw new Error('Upload failed: ' + r.status);
   const result = await r.json();
-  return result.url; // full Vercel Blob URL
+  return result.url;
+}
+
+// ========== Upload project images to project-specific folder ==========
+async function uploadProjectFiles(files, folder) {
+  const formData = new FormData();
+  for (const file of files) formData.append('images', file);
+  const r = await fetch('/api/upload/project/' + encodeURIComponent(folder), {
+    method: 'POST', body: formData
+  });
+  if (!r.ok) throw new Error('Upload failed: ' + r.status);
+  const result = await r.json();
+  return result.urls || [];
 }
 
 // ========== About photo upload ==========
 async function uploadAboutPhoto(input) {
   if (!input.files[0]) return;
   toast('上传中...', 'info');
-  const url = await uploadFile(input.files[0], 'about');
-  if (url) {
-    data.about.photo = url;
-    document.getElementById('aboutPhotoPreview').src = url;
-    await saveAll();
+  try {
+    const url = await uploadFile(input.files[0]);
+    if (url) {
+      data.about.photo = url;
+      document.getElementById('aboutPhotoPreview').src = url;
+      await saveAll();
+    }
+  } catch (e) {
+    toast('上传失败: ' + e.message, 'info');
   }
 }
 
@@ -397,9 +412,15 @@ async function deleteImg(ci, pi, imgIdx) {
   if (!confirm('删除这张图片？')) return;
   const proj = data.categories[ci].projects[pi];
   const url = proj.images[imgIdx];
-  // Delete from Blob if it's a blob URL
-  if (url && url.includes('blob.vercel-storage.com')) {
-    await fetch('/api/delete-image', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({url}) });
+  // Delete file from server
+  if (url) {
+    try {
+      await fetch('/api/images', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+    } catch (e) { console.warn('Delete request failed:', e); }
   }
   proj.images.splice(imgIdx, 1);
   if (proj.cover === url) proj.cover = proj.images[0] || '';
@@ -411,30 +432,30 @@ async function uploadProjectImgs(files, ci, pi) {
   if (!files || !files.length) return;
   const proj = data.categories[ci].projects[pi];
   if (!proj.images) proj.images = [];
+  const folder = proj.imageFolder || proj.id || ('proj-' + ci + '-' + pi);
   const zone = document.getElementById('uz-' + ci + '-' + pi);
   zone.classList.add('uploading');
   zone.querySelector('p').textContent = `上传中... (${files.length} 张)`;
 
-  const uploaded = [];
-  for (const file of files) {
-    try {
-      const url = await uploadFile(file, 'projects/' + (proj.imageFolder || proj.id));
-      if (url) { uploaded.push(url); proj.images.push(url); }
-    } catch (e) { console.error('Upload failed:', e); }
+  try {
+    const urls = await uploadProjectFiles(Array.from(files), folder);
+    urls.forEach(url => proj.images.push(url));
+    if (urls.length) {
+      if (!proj.cover) {
+        proj.cover = urls[0];
+        toast(`已上传 ${urls.length} 张，首张自动设为封面`);
+      } else {
+        toast(`已上传 ${urls.length} 张图片`);
+      }
+      loadProjectImages(ci, pi);
+    }
+  } catch (e) {
+    toast('上传失败: ' + e.message, 'info');
+    console.error('Upload failed:', e);
   }
 
   zone.classList.remove('uploading');
   zone.querySelector('p').textContent = '点击或拖拽上传图片';
-
-  if (uploaded.length) {
-    if (!proj.cover) {
-      proj.cover = uploaded[0];
-      toast(`已上传 ${uploaded.length} 张，首张自动设为封面`);
-    } else {
-      toast(`已上传 ${uploaded.length} 张图片`);
-    }
-    loadProjectImages(ci, pi);
-  }
 }
 
 function handleDrop(e, ci, pi) {
