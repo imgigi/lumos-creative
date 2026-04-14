@@ -65,13 +65,37 @@
     .status-bar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);padding:.4rem 2rem;font-size:.75rem;color:var(--dim);display:flex;justify-content:space-between;z-index:50}
     .status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:.4rem;background:var(--success)}
     .hint{font-size:.72rem;color:var(--dim);margin-top:.2rem;font-style:italic}
+    /* Login overlay */
+    .login-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column}
+    .login-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:2.5rem;width:360px;max-width:90vw;text-align:center}
+    .login-box h2{font-size:1.1rem;font-weight:400;color:var(--accent);letter-spacing:.2em;margin-bottom:.4rem}
+    .login-box p{font-size:.82rem;color:var(--dim);margin-bottom:1.5rem}
+    .login-box input[type="password"]{width:100%;padding:.7rem 1rem;background:var(--card2);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:.95rem;font-family:inherit;text-align:center;letter-spacing:.15em;margin-bottom:1rem}
+    .login-box input[type="password"]:focus{outline:none;border-color:var(--accent)}
+    .login-box .login-btn{width:100%;padding:.7rem;background:var(--accent);color:#000;border:none;border-radius:4px;font-size:.85rem;cursor:pointer;font-family:inherit;letter-spacing:.1em;transition:background .3s}
+    .login-box .login-btn:hover{background:#e6c04a}
+    .login-error{color:var(--danger);font-size:.8rem;margin-bottom:.8rem;min-height:1.2rem}
   </style>
 </head>
 <body>
 
+<!-- Login Screen -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <h2>LUMOS CREATIVE</h2>
+    <p>后台管理 · 请输入管理员密码</p>
+    <div class="login-error" id="loginError"></div>
+    <input type="password" id="loginPassword" placeholder="管理员密码" autofocus onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">进入后台</button>
+  </div>
+</div>
+
 <div class="admin-header">
   <h1>LUMOS CREATIVE 后台</h1>
-  <a href="/" target="_blank">↗ 预览网站</a>
+  <div>
+    <a href="/" target="_blank" style="margin-right:1rem">↗ 预览网站</a>
+    <a href="#" onclick="doLogout();return false" style="color:var(--danger)">退出登录</a>
+  </div>
 </div>
 
 <div class="container">
@@ -183,12 +207,70 @@
 
 <script>
 let data = null;
+let adminToken = sessionStorage.getItem('adminToken') || '';
+
+// ========== Auth ==========
+async function doLogin() {
+  const pw = document.getElementById('loginPassword').value;
+  const errEl = document.getElementById('loginError');
+  errEl.textContent = '';
+  try {
+    const r = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw })
+    });
+    if (r.ok) {
+      const result = await r.json();
+      adminToken = result.token;
+      sessionStorage.setItem('adminToken', adminToken);
+      document.getElementById('loginOverlay').style.display = 'none';
+      init();
+    } else {
+      errEl.textContent = '密码错误，请重试';
+      document.getElementById('loginPassword').value = '';
+    }
+  } catch (e) {
+    errEl.textContent = '连接失败';
+  }
+}
+
+function doLogout() {
+  adminToken = '';
+  sessionStorage.removeItem('adminToken');
+  document.getElementById('loginOverlay').style.display = 'flex';
+  document.getElementById('loginPassword').value = '';
+  document.getElementById('loginError').textContent = '';
+}
+
+async function checkAuth() {
+  if (!adminToken) return false;
+  try {
+    const r = await fetch('/api/admin/verify', {
+      headers: { 'X-Admin-Token': adminToken }
+    });
+    return r.ok;
+  } catch { return false; }
+}
+
+// Helper: add auth header to fetch calls
+function authHeaders(extra = {}) {
+  return { ...extra, 'X-Admin-Token': adminToken };
+}
 
 // ========== Init ==========
 async function init() {
   data = await (await fetch('/api/data')).json();
   populateAll();
 }
+
+// Check saved session on load
+(async () => {
+  if (await checkAuth()) {
+    document.getElementById('loginOverlay').style.display = 'none';
+    init();
+  }
+})();
 
 function populateAll() {
   // Site
@@ -233,11 +315,12 @@ function switchTab(tab, el) {
 // ========== Save ==========
 async function saveAll() {
   collectAll();
-  await fetch('/api/data', {
+  const r = await fetch('/api/data', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(data)
   });
+  if (r.status === 401) { doLogout(); toast('登录已过期，请重新登录', 'info'); return; }
   document.getElementById('lastSaved').textContent = '上次保存: ' + new Date().toLocaleTimeString();
   toast('已保存，前台已自动更新 ✓', 'success');
 }
@@ -275,26 +358,28 @@ function toast(msg, type) {
   setTimeout(() => el.classList.remove('show'), 2500);
 }
 
-// ========== Upload helper (local Express: POST multipart) ==========
-async function uploadFile(file) {
-  const formData = new FormData();
-  formData.append('image', file);
-  const r = await fetch('/api/upload', { method: 'POST', body: formData });
+// ========== Upload helper (Vercel Blob) ==========
+async function uploadFile(file, folder = 'uploads') {
+  const filename = `${folder}/${Date.now()}-${Math.round(Math.random() * 1E6)}-${file.name}`;
+  const r = await fetch(`/api/upload?filename=${encodeURIComponent(filename)}`, {
+    method: 'PUT',
+    headers: { 'X-Admin-Token': adminToken, 'Content-Type': file.type },
+    body: file
+  });
+  if (r.status === 401) { doLogout(); throw new Error('登录已过期'); }
   if (!r.ok) throw new Error('Upload failed: ' + r.status);
   const result = await r.json();
   return result.url;
 }
 
-// ========== Upload project images to project-specific folder ==========
+// ========== Upload project images to Vercel Blob ==========
 async function uploadProjectFiles(files, folder) {
-  const formData = new FormData();
-  for (const file of files) formData.append('images', file);
-  const r = await fetch('/api/upload/project/' + encodeURIComponent(folder), {
-    method: 'POST', body: formData
-  });
-  if (!r.ok) throw new Error('Upload failed: ' + r.status);
-  const result = await r.json();
-  return result.urls || [];
+  const urls = [];
+  for (const file of files) {
+    const url = await uploadFile(file, `projects/${folder}`);
+    urls.push(url);
+  }
+  return urls;
 }
 
 // ========== About photo upload ==========
@@ -412,12 +497,12 @@ async function deleteImg(ci, pi, imgIdx) {
   if (!confirm('删除这张图片？')) return;
   const proj = data.categories[ci].projects[pi];
   const url = proj.images[imgIdx];
-  // Delete file from server
-  if (url) {
+  // Delete file from Vercel Blob
+  if (url && url.includes('blob.vercel-storage.com')) {
     try {
-      await fetch('/api/images', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
+      await fetch('/api/delete-image', {
+        method: 'POST',
+        headers: authHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify({ url })
       });
     } catch (e) { console.warn('Delete request failed:', e); }

@@ -35,71 +35,93 @@ function initSplash() {
   resize();
   window.addEventListener('resize', resize);
 
-  // Center of screen
   const cx = () => canvas.width / 2;
   const cy = () => canvas.height / 2;
 
-  // ---- Phase timeline (ms) ----
-  // 0 - 800ms   : silence (dark)
-  // 800 - 2000ms: first glow pulse (dim)
-  // 2000-2500ms : fade between pulses
-  // 2500-4000ms : second glow pulse (brighter)
-  // 4000ms      : text appears together + glow stays
-  // 4000-6000ms : text holds visible
-  // 6000-7000ms : glow fades gently
-  // 7000ms      : text has been visible for ~3s
-  // 9000ms      : splash fades out
+  // ---- Breathing light timeline (ms) ----
+  // 0 - 600ms     : silence (pure dark)
+  // 600 - 2200ms  : first breath — inhale up, exhale down (faint)
+  // 2200 - 2600ms : pause between breaths
+  // 2600 - 4400ms : second breath — inhale up, exhale down (stronger)
+  // 4400 - 5200ms : light stabilizes, text fades in
+  // 5200 - 8200ms : text holds (3 seconds visible)
+  // 8200 - 9400ms : everything fades out, splash dismissed
 
   const startTime = performance.now();
+
+  // Breathing curve: slow inhale (ease-in), quick peak, slow exhale (ease-out)
+  function breathCurve(p) {
+    // Asymmetric bell: slower rise, gentle fall — like real breathing
+    if (p < 0.4) {
+      // Inhale: slow start, accelerate
+      const t = p / 0.4;
+      return t * t * (3 - 2 * t); // smoothstep
+    } else if (p < 0.55) {
+      // Peak hold
+      return 1;
+    } else {
+      // Exhale: ease out
+      const t = (p - 0.55) / 0.45;
+      return 1 - t * t;
+    }
+  }
 
   let animId;
   function drawFrame(now) {
     const t = now - startTime;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Glow intensity schedule
     let glowAlpha = 0;
     let glowRadius = 0;
+    const scale = canvas.width / 1440;
 
-    if (t >= 800 && t < 2000) {
-      // First pulse: ramp up then down
-      const p = (t - 800) / 1200;
-      const bell = Math.sin(p * Math.PI);
-      glowAlpha = 0.28 * bell;
-      glowRadius = (280 + 120 * bell) * (canvas.width / 1440);
-    } else if (t >= 2500 && t < 4500) {
-      // Second pulse: brighter, wider
-      const p = (t - 2500) / 2000;
-      const bell = Math.sin(p * Math.PI);
-      glowAlpha = 0.6 * bell;
-      glowRadius = (340 + 200 * bell) * (canvas.width / 1440);
-    } else if (t >= 4500 && t < 6500) {
-      // Sustained soft glow while text is visible
-      const p = (t - 4500) / 2000;
-      glowAlpha = 0.25 * (1 - p * 0.6);
-      glowRadius = 400 * (canvas.width / 1440);
-    } else if (t >= 6500 && t < 7500) {
-      glowAlpha = 0.1 * (1 - (t - 6500) / 1000);
-      glowRadius = 400 * (canvas.width / 1440);
+    if (t >= 600 && t < 2200) {
+      // First breath: faint, like a tiny ember
+      const p = (t - 600) / 1600;
+      const b = breathCurve(p);
+      glowAlpha = 0.18 * b;
+      glowRadius = (200 + 100 * b) * scale;
+    } else if (t >= 2600 && t < 4400) {
+      // Second breath: stronger, light is waking up
+      const p = (t - 2600) / 1800;
+      const b = breathCurve(p);
+      glowAlpha = 0.5 * b;
+      glowRadius = (300 + 180 * b) * scale;
+    } else if (t >= 4400 && t < 5200) {
+      // Stabilize: glow settles into a steady warm light
+      const p = (t - 4400) / 800;
+      glowAlpha = 0.3 + 0.05 * Math.sin(p * Math.PI);
+      glowRadius = 420 * scale;
+    } else if (t >= 5200 && t < 8200) {
+      // Sustained gentle glow while text is visible
+      const p = (t - 5200) / 3000;
+      glowAlpha = 0.3 * (1 - p * 0.3);
+      glowRadius = 420 * scale;
+    } else if (t >= 8200 && t < 9400) {
+      // Fade out glow
+      const p = (t - 8200) / 1200;
+      glowAlpha = 0.21 * (1 - p);
+      glowRadius = 420 * scale;
     }
 
     if (glowAlpha > 0) {
+      // Warm white glow — like a candle or dawn light
       const grad = ctx.createRadialGradient(cx(), cy(), 0, cx(), cy(), glowRadius);
-      grad.addColorStop(0, `rgba(255, 255, 255, ${glowAlpha})`);
-      grad.addColorStop(0.3, `rgba(230, 230, 220, ${glowAlpha * 0.55})`);
-      grad.addColorStop(0.7, `rgba(200, 200, 190, ${glowAlpha * 0.15})`);
+      grad.addColorStop(0, `rgba(255, 252, 240, ${glowAlpha})`);
+      grad.addColorStop(0.25, `rgba(245, 240, 225, ${glowAlpha * 0.6})`);
+      grad.addColorStop(0.55, `rgba(220, 215, 200, ${glowAlpha * 0.2})`);
       grad.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
-    // Text appears at 4000ms
-    if (t >= 4000 && textWrap.style.opacity === '0') {
-      textWrap.style.transition = 'opacity 0.8s ease';
+    // Text appears at 4600ms (slightly after light stabilizes)
+    if (t >= 4600 && textWrap.style.opacity === '0') {
+      textWrap.style.transition = 'opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
       textWrap.style.opacity = '1';
     }
 
-    if (t < 9000) {
+    if (t < 9400) {
       animId = requestAnimationFrame(drawFrame);
     } else {
       cancelAnimationFrame(animId);
@@ -109,11 +131,11 @@ function initSplash() {
   textWrap.style.opacity = '0';
   animId = requestAnimationFrame(drawFrame);
 
-  // Fade out splash at 9000ms
+  // Fade out splash at 8200ms (text has been visible ~3.6s)
   setTimeout(() => {
     splash.classList.add('fade-out');
     setTimeout(() => { splash.style.display = 'none'; }, 1200);
-  }, 9000);
+  }, 8200);
 }
 
 // ==================== CANVAS CURSOR ====================
@@ -255,17 +277,18 @@ function renderAll() {
   if (!siteData) return;
 
   const logo = document.getElementById('logoText');
-  logo.textContent = currentLang === 'en' ? 'LUMOS CREATIVE' : '里面是·创意事务';
-  logo.style.fontFamily = currentLang === 'zh' ? 'var(--font-serif-zh)' : 'var(--font-en)';
+  if (currentLang === 'zh') {
+    logo.textContent = '里面是·创意事务';
+    logo.style.fontFamily = 'var(--font-serif-zh)';
+  } else {
+    logo.textContent = 'LUMOS CREATIVE';
+    logo.style.fontFamily = 'var(--font-en)';
+  }
 
   document.getElementById('nav-home').textContent = currentLang === 'zh' ? '首页' : 'Projects';
   document.getElementById('nav-about').textContent = currentLang === 'zh' ? '关于' : 'About';
 
-  // Also update splash text for correct language
-  const splashSub = document.getElementById('splashSub');
-  if (splashSub) {
-    splashSub.textContent = currentLang === 'en' ? 'Inside Is · Creative Affairs' : '里面是·创意事务';
-  }
+  // Splash text is always fixed: EN main + ZH sub (no language switching)
 
   renderHome();
   renderAbout();

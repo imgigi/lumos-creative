@@ -3,6 +3,8 @@
     { "source": "/api/data", "destination": "/api/data.js" },
     { "source": "/api/upload", "destination": "/api/upload.js" },
     { "source": "/api/delete-image", "destination": "/api/delete-image.js" },
+    { "source": "/api/admin/login", "destination": "/api/login.js" },
+    { "source": "/api/admin/verify", "destination": "/api/verify.js" },
     { "source": "/admin", "destination": "/admin/index.html" },
     { "source": "/((?!api|images|css|js|admin|_next).*)", "destination": "/index.html" }
   ]

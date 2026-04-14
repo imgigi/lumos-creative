@@ -1,14 +1,22 @@
 const { put, list } = require('@vercel/blob');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const DATA_KEY = 'lumos-data.json';
+
+function checkAuth(req) {
+  const token = req.headers['x-admin-token'];
+  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'lumos2024';
+  const expectedToken = crypto.createHash('sha256').update(ADMIN_PASSWORD).digest('hex');
+  return token === expectedToken;
+}
 
 module.exports = async function handler(req, res) {
   // CORS for admin
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Admin-Token');
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   const token = process.env.BLOB_READ_WRITE_TOKEN;
@@ -40,6 +48,8 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
+    if (!checkAuth(req)) return res.status(401).json({ error: 'Unauthorized' });
+
     try {
       await put(DATA_KEY, JSON.stringify(req.body), {
         access: 'public', addRandomSuffix: false, token,

@@ -3,11 +3,31 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
+const crypto = require('crypto');
+
 const app = express();
 const PORT = 3000;
 
 const DATA_FILE = path.join(__dirname, '..', 'data.json');
 const IMAGES_DIR = path.join(__dirname, '..', 'public', 'images');
+
+// ---------- Admin Authentication ----------
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'lumos2024';
+const adminSessions = new Map(); // token -> expiry timestamp
+
+function generateToken() {
+  return crypto.randomBytes(32).toString('hex');
+}
+
+function requireAdmin(req, res, next) {
+  const token = req.headers['x-admin-token'] || req.query.token;
+  if (token && adminSessions.has(token)) {
+    const expiry = adminSessions.get(token);
+    if (Date.now() < expiry) return next();
+    adminSessions.delete(token);
+  }
+  res.status(401).json({ error: 'Unauthorized' });
+}
 
 if (!fs.existsSync(DATA_FILE)) {
   console.error('data.json not found.');
@@ -70,25 +90,49 @@ const uploadProject = multer({ storage: projectStorage, limits: { fileSize: 20 *
 
 // ========== API ==========
 
-// Data CRUD
+// Admin login
+app.post('/api/admin/login', (req, res) => {
+  const { password } = req.body;
+  if (password === ADMIN_PASSWORD) {
+    const token = generateToken();
+    // Session expires in 24 hours
+    adminSessions.set(token, Date.now() + 24 * 60 * 60 * 1000);
+    res.json({ success: true, token });
+  } else {
+    res.status(401).json({ error: 'Invalid password' });
+  }
+});
+
+// Verify token
+app.get('/api/admin/verify', (req, res) => {
+  const token = req.headers['x-admin-token'] || req.query.token;
+  if (token && adminSessions.has(token) && Date.now() < adminSessions.get(token)) {
+    res.json({ valid: true });
+  } else {
+    res.status(401).json({ valid: false });
+  }
+});
+
+// Data read (public)
 app.get('/api/data', (req, res) => {
   res.json(JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')));
 });
 
-app.post('/api/data', (req, res) => {
+// Data write (admin only)
+app.post('/api/data', requireAdmin, (req, res) => {
   fs.writeFileSync(DATA_FILE, JSON.stringify(req.body, null, 2), 'utf8');
-  broadcast();                       // notify all frontends
+  broadcast();
   res.json({ success: true });
 });
 
-// Generic upload (profile photo)
-app.post('/api/upload', uploadGeneric.single('image'), (req, res) => {
+// Generic upload (admin only)
+app.post('/api/upload', requireAdmin, uploadGeneric.single('image'), (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'No file' });
   res.json({ url: '/images/uploads/' + req.file.filename });
 });
 
-// Upload images INTO a specific project folder — the key "foolproof" endpoint
-app.post('/api/upload/project/:folder', uploadProject.array('images', 50), (req, res) => {
+// Upload images INTO a specific project folder (admin only)
+app.post('/api/upload/project/:folder', requireAdmin, uploadProject.array('images', 50), (req, res) => {
   if (!req.files || !req.files.length) return res.status(400).json({ error: 'No files' });
   const folder = req.params.folder;
   const urls = req.files.map(f => `/images/projects/${folder}/${f.filename}`);
@@ -105,9 +149,9 @@ app.get('/api/images/:folder', (req, res) => {
   res.json(files.map(f => `/images/projects/${req.params.folder}/${f}`));
 });
 
-// Delete a single image
-app.delete('/api/images', (req, res) => {
-  const urlPath = req.body.url;            // e.g. "/images/projects/olympic/1.jpg"
+// Delete a single image (admin only)
+app.delete('/api/images', requireAdmin, (req, res) => {
+  const urlPath = req.body.url;
   if (!urlPath) return res.status(400).json({ error: 'Missing url' });
   const filePath = path.join(__dirname, '..', 'public', urlPath);
   if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
@@ -116,7 +160,7 @@ app.delete('/api/images', (req, res) => {
 
 // ========== Pages ==========
 app.get('/admin', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'admin', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'public', 'admin', 'index.html'));
 });
 
 app.get('*', (req, res) => {

@@ -113,7 +113,7 @@ header {
 
 .header-brand {
   font-family: var(--font-en);
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 400;
   letter-spacing: 0.22em;
   color: var(--text);
@@ -261,7 +261,7 @@ header {
 
 .category-header h2 {
   font-family: var(--font-serif-zh);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 400;
   letter-spacing: 0.08em;
   color: var(--text);
@@ -900,13 +900,15 @@ header {
     padding: 1.5rem 1.5rem 1rem;
   }
 
+  .header-brand { font-size: 1.3rem; }
+
   .home-hero h1 { font-size: 1.2rem; }
 
   .categories-section {
     padding: 0.5rem 1.5rem 3rem;
   }
 
-  .category-header h2 { font-size: 1.2rem; }
+  .category-header h2 { font-size: 1.15rem; }
 
   .project-card {
     min-width: 240px;
