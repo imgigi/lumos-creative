@@ -41,21 +41,16 @@
     .card-dark{background:var(--card2)}
     .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem}
     .card-header strong{font-size:.9rem}
-    /* Image upload */
-    .upload-zone{border:2px dashed var(--border);border-radius:6px;padding:1.5rem;text-align:center;cursor:pointer;transition:all .3s;margin:.6rem 0;position:relative}
-    .upload-zone:hover,.upload-zone.dragover{border-color:var(--accent);background:rgba(212,175,55,.04)}
-    .upload-zone p{color:var(--dim);font-size:.82rem}
-    .upload-zone input{display:none}
-    .upload-zone.uploading p{color:var(--accent)}
-    /* Image grid with cover selection */
-    .img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.6rem;margin:.6rem 0}
-    .img-thumb{position:relative;aspect-ratio:1;border-radius:4px;overflow:hidden;border:2px solid transparent;cursor:pointer;transition:border-color .2s}
-    .img-thumb img{width:100%;height:100%;object-fit:cover}
-    .img-thumb:hover{border-color:var(--accent)}
-    .img-thumb.is-cover{border-color:var(--accent)}
-    .img-thumb .cover-badge{position:absolute;top:4px;left:4px;background:var(--accent);color:#000;font-size:.65rem;padding:1px 5px;border-radius:2px;font-weight:700}
-    .img-thumb .del-btn{position:absolute;top:4px;right:4px;background:var(--danger);color:#fff;border:none;width:20px;height:20px;border-radius:50%;font-size:.7rem;cursor:pointer;display:none;align-items:center;justify-content:center;line-height:1}
-    .img-thumb:hover .del-btn{display:flex}
+    /* Image URL management */
+    .img-url-list{margin:.6rem 0}
+    .img-url-item{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;background:var(--card2);border:1px solid var(--border);border-radius:4px;padding:.4rem .6rem}
+    .img-url-item .thumb{width:48px;height:36px;object-fit:cover;border-radius:3px;flex-shrink:0;background:#333}
+    .img-url-item .url-text{flex:1;font-size:.78rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .img-url-item .del-btn{background:var(--danger);color:#fff;border:none;width:22px;height:22px;border-radius:50%;font-size:.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .img-url-item .cover-badge{background:var(--accent);color:#000;font-size:.65rem;padding:1px 5px;border-radius:2px;font-weight:700;flex-shrink:0}
+    .img-url-item .set-cover-btn{font-size:.7rem;padding:.15rem .5rem;margin-left:.3rem}
+    .url-add-row{display:flex;gap:.5rem;margin-top:.5rem}
+    .url-add-row input{flex:1}
     /* Toast */
     .toast{position:fixed;bottom:2rem;right:2rem;padding:.7rem 1.4rem;border-radius:4px;font-size:.85rem;opacity:0;transition:opacity .3s;z-index:1000;color:#fff}
     .toast.show{opacity:1}
@@ -75,6 +70,8 @@
     .login-box .login-btn{width:100%;padding:.7rem;background:var(--accent);color:#000;border:none;border-radius:4px;font-size:.85rem;cursor:pointer;font-family:inherit;letter-spacing:.1em;transition:background .3s}
     .login-box .login-btn:hover{background:#e6c04a}
     .login-error{color:var(--danger);font-size:.8rem;margin-bottom:.8rem;min-height:1.2rem}
+    /* Section label */
+    .section-label{font-size:.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;margin-top:1rem;padding-bottom:.3rem;border-bottom:1px solid var(--border)}
   </style>
 </head>
 <body>
@@ -128,23 +125,26 @@
         <div class="form-group"><label>头衔 (中文)</label><input type="text" id="about_title_zh"></div>
         <div class="form-group"><label>头衔 (英文)</label><input type="text" id="about_title_en"></div>
       </div>
-      <div class="form-group">
-        <label>个人照片</label>
-        <div style="display:flex;gap:1rem;align-items:flex-start">
-          <img id="aboutPhotoPreview" src="" style="width:100px;height:120px;object-fit:cover;border-radius:4px;border:1px solid var(--border);background:var(--card2)">
-          <div class="upload-zone" style="flex:1" onclick="this.querySelector('input').click()">
-            <p>点击上传新照片</p>
-            <input type="file" accept="image/*" onchange="uploadAboutPhoto(this)">
-          </div>
-        </div>
-      </div>
       <div class="form-group"><label>引言 (中文)</label><textarea id="about_quote_zh"></textarea></div>
       <div class="form-group"><label>引言 (英文)</label><textarea id="about_quote_en"></textarea></div>
       <div class="form-group"><label>简介 (中文)</label><textarea id="about_bio_zh" style="min-height:120px"></textarea></div>
       <div class="form-group"><label>简介 (英文)</label><textarea id="about_bio_en" style="min-height:120px"></textarea></div>
       <div class="form-group"><label>教育背景 (中文)</label><textarea id="about_education_zh"></textarea></div>
       <div class="form-group"><label>教育背景 (英文)</label><textarea id="about_education_en"></textarea></div>
+      <div class="form-group"><label>奖项 (中文)</label><textarea id="about_awards_zh"></textarea></div>
+      <div class="form-group"><label>奖项 (英文)</label><textarea id="about_awards_en"></textarea></div>
     </div>
+
+    <div class="card">
+      <h3>关于页面图片 <span style="font-weight:400;font-size:.8rem;color:var(--dim)">（全宽展示，每张独占一行，粘贴 PostImage 链接）</span></h3>
+      <p class="hint" style="margin-bottom:.8rem">图片按列表顺序从上到下展示。直接粘贴图片直链（如 https://i.postimg.cc/...）即可。</p>
+      <div id="aboutImgList" class="img-url-list"></div>
+      <div class="url-add-row">
+        <input type="url" id="aboutImgUrlInput" placeholder="粘贴 PostImage 图片直链，如 https://i.postimg.cc/xxx/photo.jpg">
+        <button class="btn btn-outline btn-sm" onclick="addAboutImage()">+ 添加</button>
+      </div>
+    </div>
+
     <div class="btn-group"><button class="btn btn-primary" onclick="saveAll()">💾 保存并发布</button></div>
   </div>
 
@@ -253,7 +253,6 @@ async function checkAuth() {
   } catch { return false; }
 }
 
-// Helper: add auth header to fetch calls
 function authHeaders(extra = {}) {
   return { ...extra, 'X-Admin-Token': adminToken };
 }
@@ -261,10 +260,12 @@ function authHeaders(extra = {}) {
 // ========== Init ==========
 async function init() {
   data = await (await fetch('/api/data')).json();
+  if (!data.about.images) data.about.images = [];
+  if (!data.about.awards_zh) data.about.awards_zh = '';
+  if (!data.about.awards_en) data.about.awards_en = '';
   populateAll();
 }
 
-// Check saved session on load
 (async () => {
   if (await checkAuth()) {
     document.getElementById('loginOverlay').style.display = 'none';
@@ -294,9 +295,10 @@ function populateAll() {
   val('about_bio_zh', data.about.bio_zh);
   val('about_education_en', data.about.education_en);
   val('about_education_zh', data.about.education_zh);
-  const preview = document.getElementById('aboutPhotoPreview');
-  if (data.about.photo) preview.src = data.about.photo;
+  val('about_awards_en', data.about.awards_en);
+  val('about_awards_zh', data.about.awards_zh);
 
+  renderAboutImages();
   renderCategories();
   renderWork();
   renderServices();
@@ -345,6 +347,9 @@ function collectAll() {
   data.about.bio_zh = val('about_bio_zh');
   data.about.education_en = val('about_education_en');
   data.about.education_zh = val('about_education_zh');
+  data.about.awards_en = val('about_awards_en');
+  data.about.awards_zh = val('about_awards_zh');
+  // about.images is managed directly on data object by add/remove functions
   collectCategories();
   collectWork();
   collectServices();
@@ -372,34 +377,46 @@ async function uploadFile(file, folder = 'uploads') {
   return result.url;
 }
 
-// ========== Upload project images to Vercel Blob ==========
-async function uploadProjectFiles(files, folder) {
-  const urls = [];
-  for (const file of files) {
-    const url = await uploadFile(file, `projects/${folder}`);
-    urls.push(url);
-  }
-  return urls;
+// ========== About Images (URL-based) ==========
+function renderAboutImages() {
+  const list = document.getElementById('aboutImgList');
+  list.innerHTML = '';
+  (data.about.images || []).forEach((url, idx) => {
+    const item = document.createElement('div');
+    item.className = 'img-url-item';
+    item.innerHTML = `
+      <img class="thumb" src="${url}" onerror="this.style.opacity=0.2">
+      <span class="url-text" title="${url}">${url}</span>
+      <button class="del-btn" onclick="removeAboutImage(${idx})" title="删除">&times;</button>
+    `;
+    list.appendChild(item);
+  });
 }
 
-// ========== About photo upload ==========
-async function uploadAboutPhoto(input) {
-  if (!input.files[0]) return;
-  toast('上传中...', 'info');
-  try {
-    const url = await uploadFile(input.files[0]);
-    if (url) {
-      data.about.photo = url;
-      document.getElementById('aboutPhotoPreview').src = url;
-      await saveAll();
-    }
-  } catch (e) {
-    toast('上传失败: ' + e.message, 'info');
-  }
+function addAboutImage() {
+  const input = document.getElementById('aboutImgUrlInput');
+  const url = input.value.trim();
+  if (!url) return;
+  if (!data.about.images) data.about.images = [];
+  data.about.images.push(url);
+  input.value = '';
+  renderAboutImages();
+  toast('图片已添加，请点击保存发布', 'info');
 }
+
+function removeAboutImage(idx) {
+  data.about.images.splice(idx, 1);
+  renderAboutImages();
+}
+
+// Allow pressing Enter in the URL input to add
+document.addEventListener('DOMContentLoaded', () => {
+  const inp = document.getElementById('aboutImgUrlInput');
+  if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') addAboutImage(); });
+});
 
 // ================================================================
-//  PROJECTS EDITOR  —  the core "foolproof" experience
+//  PROJECTS EDITOR
 // ================================================================
 function renderCategories() {
   const box = document.getElementById('categoriesEditor');
@@ -429,9 +446,8 @@ function renderCategories() {
 }
 
 function renderProjectCard(container, proj, ci, pi) {
-  const folder = proj.imageFolder || proj.id || ('proj-' + ci + '-' + pi);
-  // ensure folder is set
-  if (!proj.imageFolder) proj.imageFolder = folder;
+  if (!proj.imageFolder) proj.imageFolder = proj.id || ('proj-' + ci + '-' + pi);
+  if (!proj.images) proj.images = [];
 
   const div = document.createElement('div');
   div.className = 'card card-dark';
@@ -446,115 +462,83 @@ function renderProjectCard(container, proj, ci, pi) {
     </div>
     <div class="form-group"><label>外部链接 (可选)</label><input type="text" class="p-link" data-ci="${ci}" data-pi="${pi}" value="${esc(proj.link)}"></div>
     <div class="row">
-      <div class="form-group"><label>详情内容 (中文)</label><textarea class="p-czh" data-ci="${ci}" data-pi="${pi}" style="min-height:160px">${blocksToText(proj.content_zh)}</textarea><div class="hint">格式: ## 标题 / 普通段落 / [img: 1.jpg, 2.jpg] / [link: 文字 | URL]，用空行分隔</div></div>
-      <div class="form-group"><label>详情内容 (英文)</label><textarea class="p-cen" data-ci="${ci}" data-pi="${pi}" style="min-height:160px">${blocksToText(proj.content_en)}</textarea></div>
+      <div class="form-group">
+        <label>详情内容 (中文)</label>
+        <textarea class="p-czh" data-ci="${ci}" data-pi="${pi}" style="min-height:160px">${blocksToText(proj.content_zh)}</textarea>
+        <div class="hint">格式: ## 标题 / 普通段落 / [img: https://...] / [link: 文字 | URL]，用空行分隔</div>
+      </div>
+      <div class="form-group">
+        <label>详情内容 (英文)</label>
+        <textarea class="p-cen" data-ci="${ci}" data-pi="${pi}" style="min-height:160px">${blocksToText(proj.content_en)}</textarea>
+      </div>
     </div>
-    <!-- Images -->
-    <label>项目图片 <span style="font-weight:400;text-transform:none;font-style:italic">（点击图片设为封面，悬浮右上角 × 删除）</span></label>
-    <div class="img-grid" id="imgs-${ci}-${pi}"></div>
-    <div class="upload-zone" id="uz-${ci}-${pi}"
-         onclick="this.querySelector('input').click()"
-         ondragover="event.preventDefault();this.classList.add('dragover')"
-         ondragleave="this.classList.remove('dragover')"
-         ondrop="handleDrop(event,${ci},${pi})">
-      <p>点击或拖拽上传图片</p>
-      <input type="file" accept="image/*" multiple onchange="uploadProjectImgs(this.files,${ci},${pi})">
+    <div class="section-label">项目图片（点击封面标记，× 删除）</div>
+    <p class="hint" style="margin-bottom:.5rem">粘贴 PostImage 图片直链后点击添加。点击"设为封面"来设置首页卡片封面图。</p>
+    <div class="img-url-list" id="pimgs-${ci}-${pi}"></div>
+    <div class="url-add-row">
+      <input type="url" id="pimg-input-${ci}-${pi}" placeholder="粘贴 PostImage 图片直链">
+      <button class="btn btn-outline btn-sm" onclick="addProjectImage(${ci},${pi})">+ 添加</button>
     </div>
   `;
   container.appendChild(div);
 
-  // Load existing images
-  loadProjectImages(ci, pi);
+  // Enter key support for project image input
+  const inp = div.querySelector(`#pimg-input-${ci}-${pi}`);
+  if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') addProjectImage(ci, pi); });
+
+  renderProjectImages(ci, pi);
 }
 
-function loadProjectImages(ci, pi) {
-  const grid = document.getElementById('imgs-' + ci + '-' + pi);
-  if (!grid) return;
+function renderProjectImages(ci, pi) {
+  const list = document.getElementById('pimgs-' + ci + '-' + pi);
+  if (!list) return;
   const proj = data.categories[ci].projects[pi];
   const images = proj.images || [];
-  const currentCover = proj.cover;
-  grid.innerHTML = '';
+  const cover = proj.cover || '';
+  list.innerHTML = '';
   images.forEach((url, idx) => {
-    const thumb = document.createElement('div');
-    thumb.className = 'img-thumb' + (url === currentCover ? ' is-cover' : '');
-    thumb.innerHTML = `
-      <img src="${url}" loading="lazy">
-      ${url === currentCover ? '<span class="cover-badge">封面</span>' : ''}
-      <button class="del-btn" onclick="event.stopPropagation();deleteImg(${ci},${pi},${idx})">&times;</button>
+    const isCover = url === cover;
+    const item = document.createElement('div');
+    item.className = 'img-url-item';
+    item.innerHTML = `
+      <img class="thumb" src="${url}" onerror="this.style.opacity=0.2">
+      ${isCover ? '<span class="cover-badge">封面</span>' : `<button class="btn btn-outline btn-sm set-cover-btn" onclick="setProjCover('${url}',${ci},${pi})">设为封面</button>`}
+      <span class="url-text" title="${url}">${url}</span>
+      <button class="del-btn" onclick="deleteProjImage(${ci},${pi},${idx})" title="删除">&times;</button>
     `;
-    thumb.onclick = () => setCover(url, ci, pi);
-    grid.appendChild(thumb);
+    list.appendChild(item);
   });
 }
 
-function setCover(url, ci, pi) {
-  data.categories[ci].projects[pi].cover = url;
-  loadProjectImages(ci, pi);
-  toast('封面已更新，点击保存发布', 'info');
-}
-
-async function deleteImg(ci, pi, imgIdx) {
-  if (!confirm('删除这张图片？')) return;
-  const proj = data.categories[ci].projects[pi];
-  const url = proj.images[imgIdx];
-  // Delete file from Vercel Blob
-  if (url && url.includes('blob.vercel-storage.com')) {
-    try {
-      await fetch('/api/delete-image', {
-        method: 'POST',
-        headers: authHeaders({ 'Content-Type': 'application/json' }),
-        body: JSON.stringify({ url })
-      });
-    } catch (e) { console.warn('Delete request failed:', e); }
-  }
-  proj.images.splice(imgIdx, 1);
-  if (proj.cover === url) proj.cover = proj.images[0] || '';
-  loadProjectImages(ci, pi);
-  toast('图片已删除');
-}
-
-async function uploadProjectImgs(files, ci, pi) {
-  if (!files || !files.length) return;
+function addProjectImage(ci, pi) {
+  const inp = document.getElementById(`pimg-input-${ci}-${pi}`);
+  const url = inp.value.trim();
+  if (!url) return;
   const proj = data.categories[ci].projects[pi];
   if (!proj.images) proj.images = [];
-  const folder = proj.imageFolder || proj.id || ('proj-' + ci + '-' + pi);
-  const zone = document.getElementById('uz-' + ci + '-' + pi);
-  zone.classList.add('uploading');
-  zone.querySelector('p').textContent = `上传中... (${files.length} 张)`;
-
-  try {
-    const urls = await uploadProjectFiles(Array.from(files), folder);
-    urls.forEach(url => proj.images.push(url));
-    if (urls.length) {
-      if (!proj.cover) {
-        proj.cover = urls[0];
-        toast(`已上传 ${urls.length} 张，首张自动设为封面`);
-      } else {
-        toast(`已上传 ${urls.length} 张图片`);
-      }
-      loadProjectImages(ci, pi);
-    }
-  } catch (e) {
-    toast('上传失败: ' + e.message, 'info');
-    console.error('Upload failed:', e);
-  }
-
-  zone.classList.remove('uploading');
-  zone.querySelector('p').textContent = '点击或拖拽上传图片';
+  proj.images.push(url);
+  if (!proj.cover) proj.cover = url;
+  inp.value = '';
+  renderProjectImages(ci, pi);
+  toast('图片已添加，请保存发布', 'info');
 }
 
-function handleDrop(e, ci, pi) {
-  e.preventDefault();
-  e.currentTarget.classList.remove('dragover');
-  if (e.dataTransfer.files.length) uploadProjectImgs(e.dataTransfer.files, ci, pi);
+function setProjCover(url, ci, pi) {
+  data.categories[ci].projects[pi].cover = url;
+  renderProjectImages(ci, pi);
+  toast('封面已更新，请保存发布', 'info');
+}
+
+function deleteProjImage(ci, pi, idx) {
+  if (!confirm('删除这张图片？')) return;
+  const proj = data.categories[ci].projects[pi];
+  const url = proj.images[idx];
+  proj.images.splice(idx, 1);
+  if (proj.cover === url) proj.cover = proj.images[0] || '';
+  renderProjectImages(ci, pi);
 }
 
 // ========== Content blocks helpers ==========
-// Serialize content blocks to editable text format:
-//   ## Heading
-//   Paragraph text
-//   [img: 1.jpg, 2.jpg]
-//   [link: Link Text | https://url.com]
 function blocksToText(blocks) {
   if (!blocks || !blocks.length) return '';
   return blocks.map(b => {
@@ -568,38 +552,24 @@ function blocksToText(blocks) {
   }).join('\n\n');
 }
 
-// Parse text back to content blocks
 function textToBlocks(text) {
   if (!text.trim()) return [];
   return text.split(/\n\s*\n/).map(chunk => {
     chunk = chunk.trim();
     if (!chunk) return null;
-    // Heading: ## text
     if (chunk.startsWith('## ')) {
       return { type: 'heading', text: chunk.slice(3).trim() };
     }
-    // Images: [img: file1.jpg, file2.jpg]
     const imgMatch = chunk.match(/^\[img:\s*(.+)\]$/);
     if (imgMatch) {
       return { type: 'images', files: imgMatch[1].split(',').map(f => f.trim()).filter(Boolean) };
     }
-    // Link: [link: text | url]
     const linkMatch = chunk.match(/^\[link:\s*(.+?)\s*\|\s*(.+)\]$/);
     if (linkMatch) {
       return { type: 'link', text: linkMatch[1].trim(), url: linkMatch[2].trim() };
     }
-    // Default: text paragraph
     return { type: 'text', text: chunk };
   }).filter(Boolean);
-}
-
-// Legacy compatibility: convert old sections to content blocks
-function sectionsToText(sections) {
-  if (!sections || !sections.length) return '';
-  return sections.map(s => {
-    if (s.subtitle) return s.subtitle + '::' + s.text;
-    return s.text;
-  }).join('\n\n');
 }
 
 function esc(s) { return (s || '').replace(/"/g, '&quot;'); }
@@ -624,7 +594,7 @@ function removeCat(ci) {
 }
 function addProjectTo(ci) {
   const id = 'proj-' + Date.now();
-  data.categories[ci].projects.push({ id, title_en:'', title_zh:'', cover:'', imageFolder:id, link:'', content_zh:[], content_en:[] });
+  data.categories[ci].projects.push({ id, title_en:'', title_zh:'', cover:'', images:[], imageFolder:id, link:'', content_zh:[], content_en:[] });
   renderCategories();
 }
 function removeProj(ci,pi) {
@@ -639,27 +609,48 @@ function renderWork() {
     const div = document.createElement('div');
     div.className = 'card';
     div.innerHTML = `
-      <div class="card-header"><strong>${exp.title_zh||'新职位'}</strong><button class="btn btn-danger btn-sm" onclick="removeWork(${i})">删除</button></div>
+      <div class="card-header">
+        <strong>${exp.title_zh || '新职位'}</strong>
+        <button class="btn btn-danger btn-sm" onclick="removeWork(${i})">删除</button>
+      </div>
       <div class="row">
         <div class="form-group"><label>职位 (中文)</label><input type="text" class="w-tzh" data-i="${i}" value="${esc(exp.title_zh)}"></div>
         <div class="form-group"><label>职位 (英文)</label><input type="text" class="w-ten" data-i="${i}" value="${esc(exp.title_en)}"></div>
       </div>
+      <div class="form-group"><label>时间段</label><input type="text" class="w-period" data-i="${i}" value="${esc(exp.period)}" style="max-width:300px"></div>
+      <div class="section-label" style="margin-top:.8rem">封面图片（用于关于页工作经历卡片）</div>
+      <div class="form-group">
+        <label>封面图片 URL（PostImage 直链）</label>
+        <input type="url" class="w-cover" data-i="${i}" value="${esc(exp.cover)}" placeholder="https://i.postimg.cc/...">
+      </div>
+      <div class="section-label">详情内容</div>
       <div class="row">
-        <div class="form-group"><label>时间段</label><input type="text" class="w-period" data-i="${i}" value="${esc(exp.period)}"></div>
-        <div class="form-group"><label>关联图片文件夹 (可选)</label><input type="text" class="w-folder" data-i="${i}" value="${esc(exp.detailFolder)}"></div>
+        <div class="form-group">
+          <label>详情内容 (中文)</label>
+          <textarea class="w-czh" data-i="${i}" style="min-height:160px">${blocksToText(exp.content_zh)}</textarea>
+          <div class="hint">格式: ## 标题 / 普通段落 / [img: https://...] / [link: 文字 | URL]，用空行分隔</div>
+        </div>
+        <div class="form-group">
+          <label>详情内容 (英文)</label>
+          <textarea class="w-cen" data-i="${i}" style="min-height:160px">${blocksToText(exp.content_en)}</textarea>
+        </div>
       </div>
     `;
     box.appendChild(div);
   });
 }
+
 function collectWork() {
   document.querySelectorAll('.w-tzh').forEach(el => data.workExperience[el.dataset.i].title_zh = el.value);
   document.querySelectorAll('.w-ten').forEach(el => data.workExperience[el.dataset.i].title_en = el.value);
   document.querySelectorAll('.w-period').forEach(el => data.workExperience[el.dataset.i].period = el.value);
-  document.querySelectorAll('.w-folder').forEach(el => data.workExperience[el.dataset.i].detailFolder = el.value);
+  document.querySelectorAll('.w-cover').forEach(el => data.workExperience[el.dataset.i].cover = el.value);
+  document.querySelectorAll('.w-czh').forEach(el => data.workExperience[el.dataset.i].content_zh = textToBlocks(el.value));
+  document.querySelectorAll('.w-cen').forEach(el => data.workExperience[el.dataset.i].content_en = textToBlocks(el.value));
 }
+
 function addWorkExp() {
-  data.workExperience.push({ title_en:'', title_zh:'', period:'', id:'w-'+Date.now(), detailFolder:'' });
+  data.workExperience.push({ title_en:'', title_zh:'', period:'', id:'w-'+Date.now(), cover:'', content_zh:[], content_en:[] });
   renderWork();
 }
 function removeWork(i) { if(confirm('删除？')){data.workExperience.splice(i,1);renderWork();} }

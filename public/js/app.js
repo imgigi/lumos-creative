@@ -18,125 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   renderAll();
   initCursor();
-  initSplash();
 });
-
-// ==================== SPLASH SCREEN ====================
-function initSplash() {
-  const splash = document.getElementById('splash');
-  const canvas = document.getElementById('splashCanvas');
-  const ctx = canvas.getContext('2d');
-  const textWrap = splash.querySelector('.splash-text-wrap');
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  const cx = () => canvas.width / 2;
-  const cy = () => canvas.height / 2;
-
-  // ---- Breathing light timeline (ms) ----
-  // 0 - 600ms     : silence (pure dark)
-  // 600 - 2200ms  : first breath — inhale up, exhale down (faint)
-  // 2200 - 2600ms : pause between breaths
-  // 2600 - 4400ms : second breath — inhale up, exhale down (stronger)
-  // 4400 - 5200ms : light stabilizes, text fades in
-  // 5200 - 8200ms : text holds (3 seconds visible)
-  // 8200 - 9400ms : everything fades out, splash dismissed
-
-  const startTime = performance.now();
-
-  // Breathing curve: slow inhale (ease-in), quick peak, slow exhale (ease-out)
-  function breathCurve(p) {
-    // Asymmetric bell: slower rise, gentle fall — like real breathing
-    if (p < 0.4) {
-      // Inhale: slow start, accelerate
-      const t = p / 0.4;
-      return t * t * (3 - 2 * t); // smoothstep
-    } else if (p < 0.55) {
-      // Peak hold
-      return 1;
-    } else {
-      // Exhale: ease out
-      const t = (p - 0.55) / 0.45;
-      return 1 - t * t;
-    }
-  }
-
-  let animId;
-  function drawFrame(now) {
-    const t = now - startTime;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    let glowAlpha = 0;
-    let glowRadius = 0;
-    const scale = canvas.width / 1440;
-
-    if (t >= 600 && t < 2200) {
-      // First breath: faint, like a tiny ember
-      const p = (t - 600) / 1600;
-      const b = breathCurve(p);
-      glowAlpha = 0.18 * b;
-      glowRadius = (200 + 100 * b) * scale;
-    } else if (t >= 2600 && t < 4400) {
-      // Second breath: stronger, light is waking up
-      const p = (t - 2600) / 1800;
-      const b = breathCurve(p);
-      glowAlpha = 0.5 * b;
-      glowRadius = (300 + 180 * b) * scale;
-    } else if (t >= 4400 && t < 5200) {
-      // Stabilize: glow settles into a steady warm light
-      const p = (t - 4400) / 800;
-      glowAlpha = 0.3 + 0.05 * Math.sin(p * Math.PI);
-      glowRadius = 420 * scale;
-    } else if (t >= 5200 && t < 8200) {
-      // Sustained gentle glow while text is visible
-      const p = (t - 5200) / 3000;
-      glowAlpha = 0.3 * (1 - p * 0.3);
-      glowRadius = 420 * scale;
-    } else if (t >= 8200 && t < 9400) {
-      // Fade out glow
-      const p = (t - 8200) / 1200;
-      glowAlpha = 0.21 * (1 - p);
-      glowRadius = 420 * scale;
-    }
-
-    if (glowAlpha > 0) {
-      // Warm white glow — like a candle or dawn light
-      const grad = ctx.createRadialGradient(cx(), cy(), 0, cx(), cy(), glowRadius);
-      grad.addColorStop(0, `rgba(255, 252, 240, ${glowAlpha})`);
-      grad.addColorStop(0.25, `rgba(245, 240, 225, ${glowAlpha * 0.6})`);
-      grad.addColorStop(0.55, `rgba(220, 215, 200, ${glowAlpha * 0.2})`);
-      grad.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    // Text appears at 4600ms (slightly after light stabilizes)
-    if (t >= 4600 && textWrap.style.opacity === '0') {
-      textWrap.style.transition = 'opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-      textWrap.style.opacity = '1';
-    }
-
-    if (t < 9400) {
-      animId = requestAnimationFrame(drawFrame);
-    } else {
-      cancelAnimationFrame(animId);
-    }
-  }
-
-  textWrap.style.opacity = '0';
-  animId = requestAnimationFrame(drawFrame);
-
-  // Fade out splash at 8200ms (text has been visible ~3.6s)
-  setTimeout(() => {
-    splash.classList.add('fade-out');
-    setTimeout(() => { splash.style.display = 'none'; }, 1200);
-  }, 8200);
-}
 
 // ==================== CANVAS CURSOR ====================
 function initCursor() {
@@ -344,25 +226,38 @@ function renderHome() {
 
 // ==================== ABOUT PAGE ====================
 function renderAbout() {
-  document.getElementById('aboutPhoto').src = siteData.about.photo;
+  // Profile photo (optional)
+  const photoEl = document.getElementById('aboutPhoto');
+  if (siteData.about.photo) {
+    photoEl.src = siteData.about.photo;
+    photoEl.style.display = '';
+  } else {
+    photoEl.style.display = 'none';
+  }
+
   document.getElementById('aboutName').textContent = t(siteData.about, 'name');
   document.getElementById('aboutTitle').textContent = t(siteData.about, 'title');
   document.getElementById('aboutQuote').textContent = t(siteData.about, 'quote');
   document.getElementById('aboutBio').textContent = t(siteData.about, 'bio');
   document.getElementById('aboutEdu').textContent = t(siteData.about, 'education');
 
+  // Awards from data
   const awardsEl = document.getElementById('aboutAwards');
-  if (currentLang === 'zh') {
-    awardsEl.textContent =
-      '第29届亚洲电视大奖 - 最佳娱乐节目奖（2024）\n' +
-      '中国电视艺术家协会 - 最佳作品奖（2023）\n' +
-      '上海国际艺术节 - 专题策划奖（2019，2020）';
-  } else {
-    awardsEl.textContent =
-      '29th Asian Television Awards - Best Entertainment (One-Off or Annual) (2024)\n' +
-      'China Television Artists Association - Best Work Award (2023)\n' +
-      'Shanghai International Arts Festival - Special Programming Award (2019, 2020)';
-  }
+  awardsEl.textContent = t(siteData.about, 'awards') || '';
+
+  // About images — full-width, one per row
+  const imagesContainer = document.getElementById('aboutImagesContainer');
+  imagesContainer.innerHTML = '';
+  const images = siteData.about.images || [];
+  images.forEach(url => {
+    if (!url) return;
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = '';
+    img.loading = 'lazy';
+    img.onerror = function() { this.style.display = 'none'; };
+    imagesContainer.appendChild(img);
+  });
 
   document.getElementById('workExpHeader').textContent =
     currentLang === 'zh' ? '工作经历' : 'Work Experience';
