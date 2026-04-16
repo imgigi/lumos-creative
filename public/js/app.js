@@ -369,9 +369,22 @@ function showPage(page) {
 }
 
 // ==================== CONTENT BLOCKS RENDERER ====================
+function resolveBlockImageSources(block, imageFolder) {
+  if (Array.isArray(block.urls) && block.urls.length > 0) return block.urls;
+  if (Array.isArray(block.images) && block.images.length > 0) return block.images;
+  if (Array.isArray(block.files) && block.files.length > 0) {
+    const basePath = imageFolder ? `/images/projects/${imageFolder}/` : '';
+    return block.files.map(file => {
+      if (!file) return '';
+      if (file.startsWith('http') || file.startsWith('/')) return file;
+      return basePath + file;
+    }).filter(Boolean);
+  }
+  return [];
+}
+
 function renderContentBlocks(blocks, imageFolder) {
   let html = '';
-  const basePath = imageFolder ? `/images/projects/${imageFolder}/` : '';
 
   blocks.forEach(block => {
     switch (block.type) {
@@ -382,10 +395,10 @@ function renderContentBlocks(blocks, imageFolder) {
         html += `<p class="modal-text">${block.text.replace(/\n/g, '\n')}</p>`;
         break;
       case 'images':
-        if (block.files && block.files.length > 0) {
+        const imageSources = resolveBlockImageSources(block, imageFolder);
+        if (imageSources.length > 0) {
           html += `<div class="modal-images">`;
-          block.files.forEach(file => {
-            const src = file.startsWith('http') ? file : basePath + file;
+          imageSources.forEach(src => {
             html += `<img src="${src}" alt="" loading="lazy" onclick="openLightbox('${src}'); event.stopPropagation();" onerror="this.style.display='none'">`;
           });
           html += `</div>`;
